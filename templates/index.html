@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- uncomment this line when you're done to make the todo list look a little nicer -->
+    <!-- <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"> -->
+    <link rel="stylesheet" href="../static/styles.css">
+    <title>The TODO List</title>
+</head>
+
+<body>
+    <!-- task 1: create a title for the todo list using the <h1></h1> tag -->
+    <h1>Todo List</h1>
+    <div class="todo-form">
+        <!-- task 2: create a label for the form using the <label></label> tag -->
+        <label for="form" id="form">Form</label>
+        <!-- task 3: create the form using the <form></form> tag; remember to set routing here -->
+        <!-- task 4: create the input using the <input></input> tag -->
+        <!-- task 5: create the submit button using the <input></input> tag but with type="submit" -->
+        <form action="/add">
+            <input type="text" name="todo-input" placeholder="enter a new todo item">
+            <input type="submit" name="todo-submit" value="submit" class="button">
+        </form>
+    </div>
+    <br>
+    <div class="todo-items">
+        <!-- task 6: create a label for the todo list using the <label></label> tag -->
+        <!-- task 7: create the todo list using the <ul></ul> tag-->
+        <label for="todo-list">TODO List</label>
+        <ul>
+            {% for item in todol %}
+            <li>{{item}}</li>
+            {% endfor %}
+        </ul>
+        <!-- HINT: you should use a loop, the structure of the loop will be as follows
+             {% for item in todo_list %}
+
+                 ... the todo item ...
+
+             {% endfor %} -->
+    </div>
+    <ul Type="round">
+        <li>as as</li>
+        <li>as as</li>
+        <li>as as</li>
+        <li>as as</li>
+        <li class="stsd"> <a>stsd</a> </li>
+        <li class="special star"> <a> ALA </a> </li>
+    </ul>
+</body>
+
+</html>

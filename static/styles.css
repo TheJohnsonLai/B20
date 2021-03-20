@@ -1,0 +1,61 @@
+html {overflow: -moz-scrollbars-vertical;}
+
+h1 {
+    color: cornflowerblue;
+    text-align: center;
+}
+
+.button {
+    width: -webkit-fill-available;
+    height: 25px;
+}
+
+.button:hover{
+    color:gray;
+    background-color: beige;
+}
+
+#form {
+    display: block;
+    text-align: center;
+    font-size: 20px;
+    color: #124727;
+}
+/* Active means click. Hover means mouse over. */
+#form:active {
+ color: red;
+}
+
+body {
+	background: #FFFFFF;
+	font-family: Arial, Helvetica, sans-serif;
+	font-size: 16px;
+	color: black;
+    text-align: left;
+    max-width: 800px;
+    margin: auto;
+}
+
+div {
+    border: 1px solid grey;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+
+label {
+    font-weight: bold;
+}
+
+input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+}
+
+.star.special {
+    color: red;
+}
+
