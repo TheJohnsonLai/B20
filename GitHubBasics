@@ -1,2 +1,10 @@
-Commit Local Changes.
-Push Changes (with a message).
+After you've made changes locally:
+
+Stage Changes to local files.
+Enter commit message.
+Commit Staged Changes to "Local repository"
+Push "Local repository" to "Remote repository"
+
+To update to the remote repo version:
+
+
