@@ -1,0 +1,141 @@
+html {
+  height: 100%;
+}
+
+body {
+  padding:0;
+  margin:0;
+  display: flex;
+  flex-direction: column;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  min-height: 100%;
+  background: #dadada;
+  color: #363636;
+  font: 100% Ubuntu, sans-serif;
+  font-size: 12pt;
+}
+
+header
+{
+	position: fixed;
+	height: 180px;
+    width: 100%;
+    background-color: #9e9e9e;
+}
+
+h2 {
+  text-align: center;
+  font: 100% Ubuntu, sans-serif;
+  font-size: 24pt;
+  color: #1b1b1b;
+  font-style: italic;
+  text-decoration: underline;
+}
+
+div.centertitle:hover > h2{
+  border-color: black;
+  color:rgb(222, 210, 200);
+}
+
+a {
+  color:rgb(212, 106, 0);
+  font-style: italic;
+}
+
+a:hover {
+  color: rgb(151, 111, 111);
+}
+
+nav {
+  font: 100% Ubuntu, sans-serif;
+  width: 100%;
+  background-color: #555;
+  overflow: auto;
+  border-radius: 5px;
+  transition: 2s;
+  margin-top: 100px;
+  top: 1;
+  position: fixed; 
+}
+
+
+.navbar a {
+  float: left;
+  padding: 10px;
+  border-radius: 5px;
+  color: white;
+  font-style: normal;
+  font-size: 16px;
+  width: 10%;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* Current page */
+nav a.active {
+  background-color: #b4b097;
+  color: white;
+}
+
+/* Hovering Mouse */
+nav a:hover {
+  background-color: rgb(160, 150, 140);
+  color: rgb(241, 205, 160);
+  transition: .5s;
+}
+
+/* Flex first position over footer */
+#content {
+	margin-top: 180px;
+  flex: 1;
+  padding: 20px;
+}
+
+footer {
+  text-align: center;
+  background-color: #c4c4c4;
+  padding: 20px;
+}
+
+/* Mobile - converts navbar to vertical */
+@media screen and (max-width: 600px) {
+  .navbar a {
+    overflow-x: auto;
+    float: none;
+    display: block;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+h3 {
+  font: 100% Ubuntu, sans-serif;
+  font-size: 14pt;
+  color: #292929;
+  font-weight: bold;
+  font-style: italic;
+  margin-left: 0px;
+  text-decoration: underline;
+}
+
+h4 {
+  font: Ubuntu, sans-serif;
+  font-size: 18pt;
+  color: #292929;
+  font-weight: bold;
+  font-style: italic;
+  text-align: center;
+  padding: 0px;
+}
+
+h5 {
+  font: Ubuntu, sans-serif;
+  font-size: 12pt;
+  color: #121872;
+  font-weight: bold;
+}
+
+#content p {
+  margin-left: 15px;
+}

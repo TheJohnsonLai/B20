@@ -1,0 +1,1 @@
+As a student user, the student must be sent to Piazza when they click the Piazza page.

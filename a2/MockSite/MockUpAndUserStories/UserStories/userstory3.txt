@@ -1,0 +1,2 @@
+As a student user, the student must be able to see all tutorial material on the tutorials page.
+(Relevant to the Mar 14, 2021 site update)

@@ -1,0 +1,14 @@
+As a student user, the student must be able to see all lecture material in the Lectures page.
+As a student user, the student must be able to see a link to the piazza page on the discussions board page.
+As a student user, the student must be able to see all tutorial material on the tutorials page.
+As a student user, the student must be able to download all assignments on the assignments page.
+As a student user, the student must be able to see a link to download LaTeX on the links page.
+As a student user, the student must be able to see a course overview on the home page.
+As a student user, the student must be able to see previous tests on the tests page.
+As a student user, the student must be able to go to Markus through the Markus page.
+As a TA, the TA must be able to see the students who worked on this assignment in the Course Team page.
+As a student user, the student must be able to see a class schedule through the calendar page.
+
+Note: Syllabus is an image that is linked on the home page.
+
+MockUps and Stories are in MockUp/UserStories folders. Numbered 1-10.

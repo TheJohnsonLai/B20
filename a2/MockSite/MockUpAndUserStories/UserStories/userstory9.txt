@@ -1,0 +1,1 @@
+As a TA, the TA must be able to see the students who worked on this assignment in the Course Team page.

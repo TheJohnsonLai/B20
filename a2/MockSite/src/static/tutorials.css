@@ -1,0 +1,43 @@
+.Week {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    display: flex-container;
+    flex-flow: row wrap;
+    flex-direction: row;
+    justify-content: space-evenly;
+    border-color: red;
+    background-color: rgb(238, 238, 238);
+    border-top-width: 2px;
+	border-radius: 5px;
+	transition: .5s;
+}
+
+.Week div {
+    background-color: rgb(222, 222, 230);
+    margin: 5px;
+    padding: 15px;
+    font-size: 14px;
+	border-radius: 5px;
+}
+
+#content p {    
+    margin-left: 15px;
+}
+
+#content a {
+    text-decoration: underline;
+}
+
+#content {
+	transition: 0.5s;
+}
+
+h3 {
+    font: 100% Ubuntu, sans-serif;
+    font-size: 13pt;
+    color: #7a94d6;
+    font-weight: bold;
+    font-style: italic;
+    text-decoration: underline;
+  }
+
