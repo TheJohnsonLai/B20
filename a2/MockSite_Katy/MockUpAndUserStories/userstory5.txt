@@ -1,0 +1,1 @@
+"As a user, I can view all relavent information to lectures such as lecture slides by clicking on the lecture tab from the side bar or the index page."

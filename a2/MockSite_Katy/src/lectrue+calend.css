@@ -1,0 +1,91 @@
+/*include other css file*/
+@import "header.css";
+@import "leftbar.css";
+@import "content.css";
+@import "footer.css";
+
+
+
+/*--------------Content-------------*/
+/*video or calender*/
+iframe {
+    width: 48.5vw;
+    height: 27vw;
+}
+/*title*/
+.content h1{
+    color: rgb(37, 75, 156);
+    font-size: 3.2vw;
+    font-family: Goudy Old Style;
+}
+/*subtitle*/
+.content h2{
+    font-size: 2vw;
+    margin-bottom: 0.5vw;
+}
+/*slide/recording/worksheet*/
+.content h3{
+    font-family: Goudy Old Style;
+}
+.content h4{
+    margin-left: 3vw;
+}
+.content p{
+    font-size: 1.3vw;
+}
+/*link*/
+.content a{
+    font-size: 1.3vw;
+}
+
+/*link hovered*/
+.content a:hover{
+    color:rgb(37, 75, 156);
+}
+
+
+
+
+/*--------------MENU-------------*/
+.menu {
+    /*font*/
+    font-size: 1.5vw;
+
+    /*color*/
+    background-color: black;
+    color: white;
+    
+    border: none;
+}
+.dropdown {
+    margin-left:56vw;
+    margin-top:3vw;
+    display: inline-block;
+}
+.menu_content {
+    display: none;
+    position: absolute;
+    background-color: white;
+    min-width: 10vw;
+    box-shadow: 0px 0.5em 1em 0px rgba(0,0,0,0.2);
+}
+/*menu link style*/
+.menu_content a {
+    /*font*/
+    font-size: 1.2vw;;
+
+    /*color*/
+    color: black;
+
+    padding: 1em 1.5em;
+    text-decoration: none;
+    display: block;
+}
+/*menu when hovered*/
+.menu_content a:hover {
+    background-color: #f1f1f1;
+    color: rgb(117, 187, 183);
+}
+.dropdown:hover .menu_content {
+    display: block;
+}

@@ -1,0 +1,115 @@
+/*include other css file*/
+@import "header.css";
+@import "leftbar.css";
+@import "content.css";
+@import "footer.css";
+
+
+
+/*--------------Content-------------*/
+/*tips*/
+.tips{
+    /*visibility*/
+    visibility: hidden;
+    
+    /*color*/
+    background-color: rgb(220, 225, 233);
+    color: rgb(37, 75, 156);
+    
+    /*font*/
+    text-align: center;
+
+    /*position*/
+    position: absolute;
+    z-index: 1;
+    padding: 0.5vw;
+    border-radius: 6px;/*curve edge*/
+    
+    /*size*/
+    width: 10em;
+}
+
+
+/*title*/
+.content .titles {
+    clear: both;
+    font-size: 1.7vw;
+    margin-bottom: 0px;
+}
+.content hr {
+    margin-top: 0 px;
+    color: rgb(182, 182, 182);
+}
+/*title tip hovered*/
+.titles:hover .tips{
+    visibility: visible;
+}
+.content a:hover {
+    color: rgb(117, 187, 183);
+}
+
+
+
+/*subtitle*/
+.content .subtitle{
+    margin-left: 2vw;
+    font-size: 1.2vw;
+    margin-bottom: 0px;
+    width: 35%;
+}
+.subtitle hr{
+    color: rgb(182, 182, 182);
+}
+/*make line right under subtitle*/
+.subtitle h4 {
+    margin-bottom: 0px;
+}
+.content ul{
+    margin-top:1vw;
+}
+/*subtitle tip hovered*/
+.subtitle:hover .tips{
+    visibility: visible;
+}
+.subtitle:hover a{
+    color: rgb(117, 187, 183);
+}
+
+
+
+/*image and info*/
+.content img {
+    /*position*/
+    float: left;
+    margin-bottom: 1.5vw;
+    
+    /*size*/
+    width: 40%;
+}
+.content #brief {
+    /*position*/
+    float: left;
+    left: 10vw;
+    margin-left: 3vw;
+    
+    /*font*/
+    font-size: 1.2vw;
+}
+.content p{
+    font-size: 1.2vw;
+    margin-left: 2vw;
+}
+
+
+/*link style*/
+.content a{
+    text-decoration: none;
+    color: rgb(37, 75, 156);
+}
+/*list*/
+.content li{
+    font-size: 1.2vw;
+}
+
+
+

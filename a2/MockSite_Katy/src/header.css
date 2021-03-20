@@ -1,0 +1,28 @@
+/*--------------HEARDER-------------*/
+.header{
+    /*color*/
+    background-color:rgb(255, 255, 255);
+    
+    /*position*/
+    position:fixed;
+    top: 0;
+    margin-left: 17vw;
+    margin-bottom: 0px;
+    z-index:1;
+    
+    /*size*/
+    width: 100%;
+    
+    /*font*/
+    font-size: 2vw;
+}
+/* make the line under Design and Analysis of Data Structures right uder*/
+.header h2{
+    margin-bottom: 0.5vw;
+    float: left;
+}
+.header hr{
+    clear:both;
+    margin-top: 0.5vw;
+    margin-bottom: 0px;
+}

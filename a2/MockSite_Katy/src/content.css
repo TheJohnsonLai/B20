@@ -1,0 +1,10 @@
+.content {
+    /*position*/
+    float: left;   
+    margin-top: 9vw;
+    margin-left: 5vw;
+    margin-bottom: 3vw;
+    
+    /*size*/
+    width:50%;
+}

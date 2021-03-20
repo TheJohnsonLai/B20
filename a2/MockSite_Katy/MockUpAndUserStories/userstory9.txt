@@ -1,0 +1,1 @@
+"As a user, I can view basic course information such as the syllabus on the course homepage."

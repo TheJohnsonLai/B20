@@ -1,0 +1,1 @@
+"As a user, I can toggle between the different weeks of lecture materials using a sidebar on the right."

@@ -1,0 +1,40 @@
+/*--------------BACKGROUND-------------*/
+body{
+    background-image:url(picture/3.jpg);
+    background-size: 100%;
+    background-repeat: repeat-x;
+}
+
+
+
+/*--------------TITLE-------------*/
+h1{
+    color: rgb(240, 240, 240);
+    font-family: Copperplate Gothic Light;
+    font-size: 4.5vw;
+    margin-bottom: 0.5vw;
+    margin-top: 20%;
+}
+hr{
+    width: 50%;
+    margin-top: 0px;
+    color: rgb(240, 240, 240);
+}
+
+
+
+/*--------------menu-------------*/
+.bar{
+   margin-top: 2vw;
+   margin-bottom: 2vw; 
+}
+.bar a{
+    font-size: 1.4vw;
+    text-decoration: none;
+    color: rgb(240, 240, 240);
+    margin: 1vw;
+    
+}
+.bar a:hover{
+    color: rgb(0, 255, 98);
+}

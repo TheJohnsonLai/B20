@@ -1,0 +1,1 @@
+"As a user, I can access all the different pages from the index page."

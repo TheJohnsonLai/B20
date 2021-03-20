@@ -1,0 +1,34 @@
+/*include other css file*/
+@import "header.css";
+@import "leftbar.css";
+@import "content.css";
+@import "footer.css";
+
+
+
+/*--------------Content-------------*/
+/*week name*/
+.content h2{
+    font-family: Goudy Old Style;
+    margin-bottom: 0px;
+    margin-top: 1em;
+    color:rgb(37, 75, 156);
+    font-size: 1.6vw;
+}
+/*list*/
+.content li{
+    margin-left: 5vw; 
+}
+.content h3{
+    font-size: 1.6vw;
+    font-family: Gabriola;
+    margin-top: 0.2em;
+}
+/*link*/
+.content a{
+    text-decoration: none;
+}
+/*link hovered*/
+.content a:hover {
+    color:rgb(37, 75, 156);
+}
