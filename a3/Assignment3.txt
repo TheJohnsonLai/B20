@@ -1,1 +1,8 @@
 (Folders etc here)
+
+To add:
+
+css and 
+python implementation
+javascript files (Used in html script)
+report.pdf
