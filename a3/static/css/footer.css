@@ -1,5 +1,5 @@
 /*--------------FOOTER-------------*/
-footer {
+.footer {
     /*position*/
     clear:both;
     margin-left: -1.7vw; /*fill entire width*/
@@ -10,7 +10,7 @@ footer {
     background-color:rgb(220, 225, 233);
 }
 
-footer #icon{
+.footer #icon{
     /*size*/
     width: 20%;
 
@@ -21,7 +21,7 @@ footer #icon{
     padding-top:2vw; 
 }
 
-footer #text {
+.footer #text {
     /*font*/
     font-size: 1.25vw;
     text-align: center;
@@ -34,11 +34,11 @@ footer #text {
 }
 
 /*link style*/
-footer .links {
+.footer .links {
     text-decoration:none;
     color:rgb(19, 40, 85);
 }
-footer .links:hover {
+.footer .links:hover {
     text-decoration:none;
     font-size: 1.3vw;
     color:rgb(150, 150, 233);
