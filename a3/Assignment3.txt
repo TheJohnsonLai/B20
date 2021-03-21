@@ -6,3 +6,5 @@ css and
 python implementation
 javascript files (Used in html script)
 report.pdf
+
+assignment3.db current contains some tables with dummy data. table structure is not final.
