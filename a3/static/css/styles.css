@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import "footer.css";
 
 * {
 	box-sizing: border-box;
@@ -66,7 +67,7 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	margin-bottom: 50px;
-	margin-top: 50px;
+	margin-top: 30px;
 }
 
 .course-card h2 {
@@ -77,25 +78,6 @@ body {
 	max-width: 100%;
     height: auto;
     width: auto\9;
-}
-
-footer {
-	margin: 0;
-	left: 0%;
-	right: 0%;
-	bottom: 0%;
-	width: 100%;
-	background-color: rgb(44, 113, 218);
-	color: white;
-}
-
-footer p a {
-	color: white;
-}
-
-footer p a:hover {
-	background: #ddd;
-    color: black;
 }
 
 a:hover {
