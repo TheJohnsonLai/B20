@@ -1,0 +1,45 @@
+/*--------------FOOTER-------------*/
+footer {
+    /*position*/
+    clear:both;
+    margin-left: -1.7vw; /*fill entire width*/
+    margin-right: -1.7vw;
+    margin-bottom: -1.8vw;
+   
+    /*color*/
+    background-color:rgb(220, 225, 233);
+}
+
+footer #icon{
+    /*size*/
+    width: 20%;
+
+    /*position*/
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    padding-top:2vw; 
+}
+
+footer #text {
+    /*font*/
+    font-size: 1.25vw;
+    text-align: center;
+    
+    /*color*/
+    color:rgb(19, 40, 85);
+    
+    /*position*/
+    padding-bottom:4vw;
+}
+
+/*link style*/
+footer .links {
+    text-decoration:none;
+    color:rgb(19, 40, 85);
+}
+footer .links:hover {
+    text-decoration:none;
+    font-size: 1.3vw;
+    color:rgb(150, 150, 233);
+}
