@@ -3,7 +3,7 @@ import sqlite3
 # g is used for database
 from flask import Flask, render_template, request, g, session
 
-DATABASE = 'a3/assignment3.db'
+DATABASE = './assignment3.db'
 
 # the function get_db is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
@@ -189,6 +189,3 @@ def tests_page():
 @app.route('/tutorials.html')
 def tutorials_page():
     return render_template('tutorials.html')
-
-if __name__ == '__main__':
-    app.run(debug=True)
