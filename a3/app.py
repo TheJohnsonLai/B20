@@ -3,7 +3,7 @@ import sqlite3
 # g is used for database
 from flask import Flask, render_template, request, g, session
 
-DATABASE = './assignment3.db'
+DATABASE = 'a3/assignment3.db'
 
 # the function get_db is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
@@ -51,6 +51,24 @@ def close_connection(exception):
     if db is not None:
         # Close the connection
         db.close()
+
+@app.route('/sviewgrades.html', methods=['GET', 'POST'])
+def student_view_grades():
+    if request.method == 'GET':
+        db=get_db()
+        # Each row from the table is placed in dictionary form
+        db.row_factory = make_dicts
+        utorid = 1 #request.args.get('utorid')#'utorid'can be other things depend on what login page returns 
+        student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
+        name = student_name.get('FNAME') + ' ' + student_name.get('LNAME')
+        #If no such student to be implemented
+        
+        
+        # Inside DB are some tables.
+        student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
+        db.close()
+        return render_template('sviewgrades.html', grade = student_grades, name = name)
+
 
 # To be implemented (Student grades - view. Currently lists students, accessed in HTML by {% for item in usersH %})
 # Can change grades.
@@ -171,3 +189,6 @@ def tests_page():
 @app.route('/tutorials.html')
 def tutorials_page():
     return render_template('tutorials.html')
+
+if __name__ == '__main__':
+    app.run(debug=True)
