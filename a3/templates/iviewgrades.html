@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/iview.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
-    <title>CSCB63: All grades</title>
+    <title>CSCB63: Instructor Panel - All Grades</title>
 </head>
 
 <body>
     <header>
-
         <div class="nav-bar">
             <a href="index.html">Home</a>
             <a href="calendar.html">Calendar</a>
@@ -27,13 +26,47 @@
             <a href="links.html">Links</a>
             <a class="active" href="instructorpanel.html">Instructor Panel</a>
         </div>
-
     </header>
-    <main>
-        <section>
-            <div class="placeholder"></div>
-        </section>
-    </main>
+
+    <section>
+        &nbsp;
+        <div class="intro">
+            <h1><b>All Grades</b></h1>
+        </div>
+        &nbsp;
+    </section>
+
+    <div class="icontent" id="iviewcontent">
+        
+        <table class="itable">
+            <tr>
+                <th>ID</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Assignment 1</th>
+                <th>Assignment 2</th>
+                <th>Assignment 3</th>
+                <th>Test 1</th>
+                <th>Test 2</th>
+                <th>Test 3</th>
+                <th>Final Exam</th>
+            </tr>
+            {% for item in studentH %}
+            <tr>
+                <td>{{ item['UTORID'] }}</td>
+                <td>{{ item['FNAME'] }}</td>
+                <td>{{ item['LNAME'] }}</td>
+                <td>{{ item['A1'] }}</td>
+                <td>{{ item['A2'] }}</td>
+                <td>{{ item['A3'] }}</td>
+                <td>{{ item['T1'] }}</td>
+                <td>{{ item['T2'] }}</td>
+                <td>{{ item['T3'] }}</td>
+                <td>{{ item['FINAL'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
     <!--footer-->
     <div class="footer">
@@ -47,4 +80,5 @@
         </div>
     </div>
 </body>
+
 </html>

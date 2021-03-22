@@ -1,7 +1,8 @@
 # Required imports
 import sqlite3
 # g is used for database
-from flask import Flask, render_template, request, g, session
+from flask import Flask, render_template, request, g
+from flask import Flask, flash, redirect, render_template, request, session, abort
 
 DATABASE = './assignment3.db'
 
@@ -36,12 +37,18 @@ def make_dicts(cursor, row):
 
 # ---------------------------------------------- Flask ------------------------------------------------
 
-
 app = Flask(__name__)
 
-#session['username'] = '' #Login
-#session['type'] = '' #instructor, student
-#app.secret_key = 'secretsessionalkey1740afos'
+# ---------------------------------------------- Authentication ---------------------------------------
+
+#app.secret_key = "thesecretkey"
+#This stuff is yet to be decided - how to implement authentication. Cannot use SQLalchemy.
+#class User():
+#    id = 0
+#    username = ''
+#   password = ''
+#   userType = "None"
+#   verified = False
 
 # the function close_connection is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
@@ -51,6 +58,8 @@ def close_connection(exception):
     if db is not None:
         # Close the connection
         db.close()
+
+# ---------------------------------------------- Webpages ---------------------------------------------
 
 @app.route('/sviewgrades.html', methods=['GET', 'POST'])
 def student_view_grades():
@@ -80,15 +89,13 @@ def instructor_view_grades():
         # Each row from the table is placed in dictionary form
         db.row_factory = make_dicts
 
-        users = []
+        students = []
         # Inside DB are some tables.
-        for user in query_db('select * from STUDENT NATURAL JOIN GRADES'):
-            users.append(user)
-
+        for item in query_db('select * from STUDENT NATURAL JOIN GRADES'):
+            students.append(item)
         db.close()
 
-        return users.__str__()
-    # return render_template('____.html', itemHTML=item)
+        return render_template('iviewgrades.html', studentH=students)        
     else:
         request.form['grade']
         request.form['examname']
@@ -111,15 +118,15 @@ def instructor_view_feedback():
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
 
-    fb = []
+    feedback = []
     # Inside DB are some tables.
     for item in query_db('select FA, FB, FC, FD from FEEDBACK'):
-        fb.append(item)
+        feedback.append(item)
 
     db.close()
 
     # return fb.__str__()
-    return render_template('iviewfeedback.html')
+    return render_template('iviewfeedback.html', feedbackH = feedback)
 
 # Instructor views remark requests, removes remark requests
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
@@ -128,22 +135,20 @@ def instructor_view_remarks():
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
 
-    remark = []
+    remarks = []
     # Inside DB are some tables.
-    for item in query_db('select * from REMARKS'):
-        remark.append(item)
+    for item in query_db('select UTORID, FNAME, LNAME, EXAMNAME, COMMENT FROM REMARKS NATURAL JOIN STUDENT'):
+        remarks.append(item)
 
     db.close()
 
     # return remark.__str__()
-    return render_template('iviewremarks.html')
+    return render_template('iviewremarks.html', remarksH=remarks)
 
 # Landing page. What will it be?
 @app.route('/')
 def root():
     return render_template('index.html')  # Change to landing html!
-
-# Webpages
 
 # Instructor Panel
 @app.route('/instructorpanel.html')
@@ -154,42 +159,39 @@ def instructor_panel_page():
 def assignments_page():
     return render_template('assignments.html')
 
-
 @app.route('/calendar.html')
 def calendar_page():
     return render_template('calendar.html')
-
 
 @app.route('/feedback.html')
 def feedback_page():
     return render_template('feedback.html')
 
-
 @app.route('/index.html')
 def index_page():
     return render_template('index.html')
-
 
 @app.route('/lectures.html')
 def lectures_page():
     return render_template('lectures.html')
 
-
 @app.route('/links.html')
 def links_page():
     return render_template('links.html')
-
 
 @app.route('/team.html')
 def team_page():
     return render_template('team.html')
 
-
 @app.route('/tests.html')
 def tests_page():
     return render_template('tests.html')
 
-
 @app.route('/tutorials.html')
 def tutorials_page():
     return render_template('tutorials.html')
+
+# -------------------------------------------- Port --------------------------------------
+
+if __name__ == "__main__":  
+    app.run(host='0.0.0.0', port=5000)

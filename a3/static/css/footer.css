@@ -1,6 +1,10 @@
 /*--------------FOOTER-------------*/
 .footer {
     /*position*/
+    position: relative;
+    bottom: 0;
+    width: 100%;
+
     clear:both;
     margin-left: -1.7vw; /*fill entire width*/
     margin-right: -1.7vw;

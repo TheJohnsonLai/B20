@@ -4,6 +4,12 @@
     color: white;
 }
 
+/* Current page */
+.nav-bar a.active:hover {
+    background: #ddd;
+    color: black;
+}
+
 .PanelContainer {
     display: flex;
     width: 100%;

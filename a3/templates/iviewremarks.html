@@ -1,14 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>
-    <title>CSCB63: Remark Requests</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/iview.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+    <title>CSCB63: Instructor Panel - Remark Requests</title>
 </head>
+
 <body>
     <header>
 
@@ -25,25 +26,49 @@
             <a href="team.html">Course Team</a>
             <a href="links.html">Links</a>
             <a class="active" href="instructorpanel.html">Instructor Panel</a>
-          </div>
+        </div>
 
     </header>
-    <main>
-        <section>
-            <div class="placeholder"></div>
-        </section>
-    </main>
+
+    <section>
+        &nbsp;
+        <div class="intro">
+            <h1><b>Remark Requests</b></h1>
+        </div>
+        &nbsp;
+    </section>
+
+    <div class="icontent" id="iviewcontent">
+
+        <table class="itable">
+            <tr>
+                <th>UTOR ID</th>
+                <th>Name</th>
+                <th>Article</th>
+                <th>Request Reason</th>
+            </tr>
+            {% for item in remarksH %}
+            <tr>
+                <td>{{ item['UTORID'] }}</td>
+                <td>{{ item['FNAME'] }} {{ item['LNAME'] }}</td>
+                <td>{{ item['EXAMNAME'] }}</td>
+                <td>{{ item['COMMENT'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
         </div>
     </div>
 </body>
+
 </html>

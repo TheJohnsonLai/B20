@@ -5,14 +5,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/iview.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
-    <title>CSCB63: Instructor Feedback</title>
+    <title>CSCB63: Instructor Panel - Feedback</title>
 </head>
 
 <body>
     <header>
-
         <div class="nav-bar">
             <a href="index.html">Home</a>
             <a href="calendar.html">Calendar</a>
@@ -27,13 +26,35 @@
             <a href="links.html">Links</a>
             <a class="active" href="instructorpanel.html">Instructor Panel</a>
         </div>
-
     </header>
-    <main>
-        <section>
-            <div class="placeholder"></div>
-        </section>
-    </main>
+
+    <section>
+        &nbsp;
+        <div class="intro">
+            <h1><b>Feedback</b></h1>
+        </div>
+        &nbsp;
+    </section>
+
+    <div class="icontent" id="iviewcontent">
+        
+        <table class="itable">
+            <tr>
+                <th>What did they like about the professor?</th>
+                <th>Suggestions for the professor?</th>
+                <th>What did the like about the TA?</th>
+                <th>Suggestions for the TA?</th>
+            </tr>
+            {% for item in feedbackH %}
+            <tr>
+                <td>{{ item['FA'] }}</td>
+                <td>{{ item['FB'] }}</td>
+                <td>{{ item['FC'] }}</td>
+                <td>{{ item['FD'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
 
     <!--footer-->
     <div class="footer">
@@ -47,4 +68,5 @@
         </div>
     </div>
 </body>
+
 </html>
