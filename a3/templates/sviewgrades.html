@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/student.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
           rel="stylesheet"/>
     <title>CSCB63: Grades</title>
@@ -26,13 +26,34 @@
         </div>
     </header>
 
-    <section>
-        &nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="content">
         <div class="intro">
-            <h1><b>{{name}}</b></h1>
+            <h1><b> Welcome {{name}}</b></h1>
+            <hr>
         </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    </section>
+        
+        <table class="grades">
+            <tr>
+                <th>Assignment 1</th>
+                <th>Assignment 2</th>
+                <th>Assignment 3</th>
+                <th>Term Test 1</th>
+                <th>Term Test 2</th>
+                <th>Term Test 3</th>
+                <th>Final Exam</th>
+            </tr>
+            <tr>
+                <td>{{grade['A1']}}</td>
+                <td>{{grade['A2']}}</td>
+                <td>{{grade['A3']}}</td>
+                <td>{{grade['T1']}}</td>
+                <td>{{grade['T2']}}</td>
+                <td>{{grade['T3']}}</td>
+                <td>{{grade['FINAL']}}</td>
+            </tr>
+        </table>
+    </div>
+
 
     <!--footer-->
     <div class="footer">

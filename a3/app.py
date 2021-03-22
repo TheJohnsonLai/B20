@@ -60,13 +60,14 @@ def student_view_grades():
         db.row_factory = make_dicts
         utorid = 1 #request.args.get('utorid')#'utorid'can be other things depend on what login page returns 
         student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
-        name = student_name.get('FNAME') + ' ' + student_name.get('LNAME')
+        name = student_name['FNAME'] + ' ' + student_name['LNAME']
         #If no such student to be implemented
         
         
         # Inside DB are some tables.
         student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
         db.close()
+        #return student_grades.__str__()
         return render_template('sviewgrades.html', grade = student_grades, name = name)
 
 

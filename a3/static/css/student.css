@@ -1,0 +1,46 @@
+@import "footer.css";
+.nav-bar {
+	margin: 0;
+    overflow: hidden;
+    background-color: rgb(44, 113, 218);
+    position: fixed;
+    top: 0;
+    width: 100%; 
+	margin-bottom: 50px;
+}
+
+.nav-bar a {
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+	display: inline-block;
+}
+
+.nav-bar a:hover {
+    background: #ddd;
+    color: black;
+}
+
+.content {
+    margin-top:5vw;
+    margin-bottom:5vw;
+}
+
+.content .grades{
+    overflow: hidden;
+    border-collapse: collapse;
+}
+.grades th, .grades td{
+  border: 1px solid #ddd;
+  padding: 8px;
+  padding-right: 40px;
+}
+.grades th {
+  padding-top: 12px;
+  padding-bottom: 12px;
+  text-align: left;
+  background-color: rgb(19, 40, 85);
+  color: white;
+}
