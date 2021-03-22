@@ -119,7 +119,7 @@ def instructor_view_feedback():
     db.close()
 
     # return fb.__str__()
-    return render_template('iviewfeedback.html.html')
+    return render_template('iviewfeedback.html')
 
 # Instructor views remark requests, removes remark requests
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
@@ -137,7 +137,6 @@ def instructor_view_remarks():
 
     # return remark.__str__()
     return render_template('iviewremarks.html')
-      
 
 # Landing page. What will it be?
 @app.route('/')
@@ -146,6 +145,10 @@ def root():
 
 # Webpages
 
+# Instructor Panel
+@app.route('/instructorpanel.html')
+def instructor_panel_page():
+    return render_template('instructorpanel.html')
 
 @app.route('/assignments.html')
 def assignments_page():
