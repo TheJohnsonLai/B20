@@ -1,16 +1,21 @@
+<!-- Only show the page if {% if session id is not null %} -->
+
+
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>
-    <title>CSCB63: Anonymous Feedback</title>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+    <title>CSCB63: Remark Requests</title>
 </head>
+
 <body>
     <header>
+
         <div class="nav-bar">
             <a href="index.html">Home</a>
             <a href="calendar.html">Calendar</a>
@@ -23,29 +28,11 @@
             <a href="feedback.html">Anonymous Feedback</a>
             <a href="team.html">Course Team</a>
             <a href="links.html">Links</a>
+            <a class="active" href="instructorpanel.html">Instructor Panel</a>
         </div>
+
     </header>
-
-    <section>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="intro">
-            <h1><b>Anonymous Feedback</b></h1>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    </section>
-
     <main>
-        <form>
-            <br>
-            Lecture Section:<br>
-            <input type="text" name="lastname" value="">
-            <br><br>
-            Feedback:<br>
-            <textarea rows="4" cols="50" name="comment"></textarea>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form> 
-
         <section>
             <div class="placeholder"></div>
         </section>
@@ -53,14 +40,15 @@
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
         </div>
     </div>
 </body>
+
 </html>

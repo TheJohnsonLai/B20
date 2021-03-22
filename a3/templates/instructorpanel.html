@@ -1,0 +1,92 @@
+<!-- Only show the page if {% if session id is not null %} -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+    <title>CSCB63: Remark Requests</title>
+</head>
+
+<body>
+    <header>
+        <div class="nav-bar">
+            <a href="index.html">Home</a>
+            <a href="calendar.html">Calendar</a>
+            <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
+            <a href="lectures.html">Lectures</a>
+            <a href="tutorials.html">Labs</a>
+            <a href="assignments.html">Assignments</a>
+            <a href="tests.html">Tests</a>
+            <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
+            <a href="feedback.html">Anonymous Feedback</a>
+            <a href="team.html">Course Team</a>
+            <a href="links.html">Links</a>
+            <a class="active" href="instructorpanel.html">Instructor Panel</a>
+        </div>
+    </header>
+
+    <section>
+        &nbsp;
+        <div class="intro">
+            <h1><b>Instructor Panel</b></h1>
+        </div>
+        &nbsp;
+    </section>
+
+    <main>
+        <article>
+        </article>
+        <div class="PanelContainer" id="allPanels">    
+
+            <a href="iviewgrades.html">
+            <div class="PanelItem" id="panel1">
+                <header class="Panel-Head">
+                    <h2>Grades</h2>
+                </header>
+                <div class="Panel-Info">
+                    <p>View student grades.</p>
+                </div>
+            </div></a>     
+
+            <a href="iviewremarks.html">
+            <div class="PanelItem" id="panel2">
+                <header class="Panel-Head">
+                    <h2>Remarks</h2>
+                </header>
+                <div class="Panel-Info">
+                    <p>View student remark requests.</p>
+                </div>
+            </div></a>      
+
+            <a href="iviewfeedback.html">
+            <div class="PanelItem" id="panel3">
+                <header class="Panel-Head">
+                    <h2>Feedback</h2>
+                </header>
+                <div class="Panel-Info">
+                    <p>View student feedback.</p>
+                </div>
+            </div></a>
+        </div>
+    </main>
+
+    <!--footer-->
+    <div class="footer">
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
+        <div id="text">
+            <p>
+                <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
+                <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
+            <p>
+        </div>
+    </div>
+
+    <script src="../static/js/instructorpanel.js"></script>
+
+</body>
+</html>

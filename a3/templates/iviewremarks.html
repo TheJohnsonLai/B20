@@ -1,3 +1,6 @@
+<!-- Only show the page if {% if session id is not null %} -->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,10 +10,11 @@
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
           rel="stylesheet"/>
-    <title>CSCB63: Anonymous Feedback</title>
+    <title>CSCB63: Remark Requests</title>
 </head>
 <body>
     <header>
+
         <div class="nav-bar">
             <a href="index.html">Home</a>
             <a href="calendar.html">Calendar</a>
@@ -23,29 +27,11 @@
             <a href="feedback.html">Anonymous Feedback</a>
             <a href="team.html">Course Team</a>
             <a href="links.html">Links</a>
-        </div>
+            <a class="active" href="instructorpanel.html">Instructor Panel</a>
+          </div>
+
     </header>
-
-    <section>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-        <div class="intro">
-            <h1><b>Anonymous Feedback</b></h1>
-        </div>
-        &nbsp;&nbsp;&nbsp;&nbsp;
-    </section>
-
     <main>
-        <form>
-            <br>
-            Lecture Section:<br>
-            <input type="text" name="lastname" value="">
-            <br><br>
-            Feedback:<br>
-            <textarea rows="4" cols="50" name="comment"></textarea>
-            <br><br>
-            <input type="submit" value="Submit">
-        </form> 
-
         <section>
             <div class="placeholder"></div>
         </section>
