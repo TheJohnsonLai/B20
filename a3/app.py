@@ -1,8 +1,8 @@
 # Required imports
 import sqlite3
 # g is used for database
-from flask import Flask, render_template, request, g
-from flask import Flask, flash, redirect, render_template, request, session, abort
+from flask import Flask, render_template, request, g #why have 2 import statments?
+from flask import Flask, flash, redirect, render_template, request, session, abort, url_for
 
 DATABASE = './assignment3.db'
 
@@ -52,6 +52,18 @@ def close_connection(exception):
         db.close()
 
 # ---------------------------------------------- Webpages ---------------------------------------------
+
+# route for login webpage
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    if request.method == 'POST':
+        if request.form['username'] != 'anna.b' or request.form['password'] != '123': #placeholder credentials (will integrate with database)
+            error = "Username or password incorrect."
+        else:
+            return redirect(url_for('root'))
+    return render_template('login.html', error=error)
+
 
 @app.route('/sviewgrades.html', methods=['GET', 'POST'])
 def student_view_grades():
@@ -196,5 +208,9 @@ def tutorials_page():
 
 # -------------------------------------------- Port --------------------------------------
 
-if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+# if __name__ == "__main__":
+#     app.run(host='0.0.0.0', port=5000)
+
+if __name__ == '__main__':
+    app.debug = True
+    app.run()
