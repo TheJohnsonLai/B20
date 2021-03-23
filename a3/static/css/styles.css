@@ -37,6 +37,7 @@ body {
     padding: 14px 16px;
     text-decoration: none;
 	display: inline-block;
+    transition: .4s;
 }
 
 .nav-bar a:hover {

@@ -20,6 +20,7 @@
     align-items: stretch;
     margin-top: 2%;
     margin-bottom: 4%;
+    transition: .5s;
 }
 
 .PanelContainer a {
@@ -31,6 +32,7 @@
 	background-color: rgb(175, 193, 228);
     border-color:#000000;
     border-radius: 3px;
+    transition: .5s;
 }
 
 .PanelContainer a:hover {
