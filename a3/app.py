@@ -57,6 +57,9 @@ def close_connection(exception):
 @app.route('/login', methods=['GET', 'POST'])
 def login():
     error = None
+    # TODO: query database and story usernames and password in a dict
+    # if request.method == 'GET':
+
     if request.method == 'POST':
         if request.form['username'] != 'anna.b' or request.form['password'] != '123': #placeholder credentials (will integrate with database)
             error = "Username or password incorrect."
