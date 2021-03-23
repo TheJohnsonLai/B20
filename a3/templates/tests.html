@@ -7,22 +7,29 @@
     <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
           rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>CSCB63: Tests</title>
 </head>
 <body>
     <header>
         <div class="nav-bar">
-            <a href="index.html">Home</a>
-            <a href="calendar.html">Calendar</a>
-            <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
-            <a href="lectures.html">Lectures</a>
-            <a href="tutorials.html">Labs</a>
-            <a href="assignments.html">Assignments</a>
-            <a href="tests.html">Tests</a>
-            <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
-            <a href="feedback.html">Anonymous Feedback</a>
-            <a href="team.html">Course Team</a>
-            <a href="links.html">Links</a>
+            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
+            <div id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="calendar.html">Calendar</a>
+                <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
+                <a href="lectures.html">Lectures</a>
+                <a href="tutorials.html">Labs</a>
+                <a href="assignments.html">Assignments</a>
+                <a href="tests.html">Tests</a>
+                <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
+                <a href="feedback.html">Anonymous Feedback</a>
+                <a href="team.html">Course Team</a>
+                <a href="links.html">Links</a>
+                {% if user_type == "instructor" %}
+                <a href="instructorpanel.html">Instructor Panel</a>
+                {% endif %}
+            </div>
         </div>
     </header>
 
@@ -86,5 +93,6 @@
             <p>
         </div>
     </div>
+    <script src="../static/js/mobile.js"></script>
 </body>
 </html>

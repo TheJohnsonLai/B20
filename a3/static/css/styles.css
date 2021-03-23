@@ -18,6 +18,28 @@ body {
 	width: 100%;
 }
 
+/* Mobile button */
+.nav-bar a.expand-menu-button {
+	display: none;
+}
+
+/* Mobile - converts navbar to vertical when screen width is too small*/
+@media screen and (max-width: 600px) {
+	.nav-bar a.expand-menu-button {
+		display: inline-block;
+  	}
+
+	#nav-menu {
+		display: none;
+	}
+
+	.nav-bar a {
+		display: none;
+		width: 100%;
+		text-align: center;
+	}
+}
+
 .nav-bar {
 	margin: 0;
     overflow: hidden;
@@ -26,6 +48,7 @@ body {
     top: 0;
     width: 100%; 
 	margin-bottom: 50px;
+	z-index: 2; /* Stacks over 0, negative indexes */
 }
 
 .nav-bar a {

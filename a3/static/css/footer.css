@@ -12,6 +12,7 @@
    
     /*color*/
     background-color:rgb(220, 225, 233);
+    z-index: 0;
 }
 
 .footer #icon{
