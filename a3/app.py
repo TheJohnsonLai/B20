@@ -87,8 +87,7 @@ def student_view_grades():
         # return student_grades.__str__()
         return render_template('sviewgrades.html', grade=student_grades, name=name)
 
-# To be implemented (Student grades - view. Currently lists students, accessed in HTML by {% for item in usersH %})
-# Can change grades.
+# Can change grades. Currently using dummy table GRADES2
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
     if session['user_type'] != "instructor":       
