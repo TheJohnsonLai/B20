@@ -1,0 +1,29 @@
+
+/* Menu Button*/
+.nav-bar a.expand-menu-button {
+	float: left;
+	background-color: rgb(45, 57, 121);
+	border-right-style: solid;
+	border-right-color: rgb(199, 199, 199);
+	border-right-width: 1px;
+	color: rgb(255, 255, 255);
+}
+
+#nav-menu {
+	display: block;
+}
+
+/* Mobile - converts navbar to vertical when screen width is too small*/
+@media screen and (max-width: 600px) {
+	.nav-bar a.expand-menu-button {
+		display: inline-block;
+  	}
+
+	#nav-menu {
+		display: none;
+	}
+
+	.nav-bar a {
+		width: 100%;
+	}
+}

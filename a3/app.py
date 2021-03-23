@@ -77,7 +77,7 @@ def student_view_grades():
 # Can change grades.
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
-    if session['user_type'] != "instructor"        
+    if session['user_type'] != "instructor":       
         return redirect(redirect_url())
     if request.method == 'GET':
         db = get_db()
@@ -108,7 +108,7 @@ def instructor_view_grades():
 # Instructor views feedback, removes feedback
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
-    if session['user_type'] != "instructor"        
+    if session['user_type'] != "instructor":
         return redirect(redirect_url())
     db = get_db()
     # Each row from the table is placed in dictionary form
@@ -126,7 +126,7 @@ def instructor_view_feedback():
 # Instructor views remark requests, removes remark requests
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
-    if session['user_type'] != "instructor"        
+    if session['user_type'] != "instructor": 
         return redirect(redirect_url())
     db = get_db()
     # Each row from the table is placed in dictionary form
@@ -152,6 +152,8 @@ def root():
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
+    if session['user_type'] != "instructor":
+        return redirect(redirect_url())
     return render_template('instructorpanel.html')
 
 @app.route('/assignments.html')
