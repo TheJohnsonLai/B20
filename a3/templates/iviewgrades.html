@@ -42,6 +42,39 @@
 
     <div class="icontent" id="iviewcontent">
 
+
+        <div class="ioption" id="edit-mark-form">
+            <form name="editform" action="iviewgrades.html" method="POST">
+                <table class="hiddentable">
+                    <tr>
+                        <td>
+                            <select class="top-option" id="list-utorid" name="list-utorid" placeholder="1">
+                                <option value="--">--</option>
+                                {% for item in ulist %}
+                                <option value="{{item['UTORID']}}">{{item['UTORID']}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <select class="top-option" id="list-examname" name="list-examname" placeholder="A1">
+                                <option value="--">--</option>
+                                {% for item in elist %}
+                                <option value="{{item}}">{{item}}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                        <td>
+                            <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00"
+                                step=0.01>
+                        </td>
+                    </tr>
+                </table>
+                <input class="top-option" type="submit" name="submission" onclick="myfunction()" class="GradeBackend"
+                    value="Submit marks">
+            </form>
+        </div>
+        <hr>
+
         <table class="itable">
             <tr>
                 <th>UTOR ID</th>
@@ -55,19 +88,21 @@
                 <th>Test 3</th>
                 <th>Final Exam</th>
             </tr>
+
             {% for item in studentH %}
             <tr>
                 <td>{{ item['UTORID'] }}</td>
                 <td>{{ item['FNAME'] }}</td>
                 <td>{{ item['LNAME'] }}</td>
-                <td>{{ item['A1'] }}%</td>
-                <td>{{ item['A2'] }}%</td>
-                <td>{{ item['A3'] }}%</td>
-                <td>{{ item['T1'] }}%</td>
-                <td>{{ item['T2'] }}%</td>
-                <td>{{ item['T3'] }}%</td>
+                <td>{{ item['A1'] }}</td>
+                <td>{{ item['A2'] }}</td>
+                <td>{{ item['A3'] }}</td>
+                <td>{{ item['T1'] }}</td>
+                <td>{{ item['T2'] }}</td>
+                <td>{{ item['T3'] }}</td>
                 <td>{{ item['FINAL'] }}</td>
             </tr>
+            </form>
             {% endfor %}
         </table>
     </div>
@@ -84,6 +119,7 @@
         </div>
     </div>
     <script src="../static/js/mobile.js"></script>
+    <script src="../static/js/iviewgrades.js"></script>
 </body>
 
 </html>

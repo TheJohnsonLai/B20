@@ -35,3 +35,25 @@
   background-color: rgb(19, 40, 85);
   color: white;
 }
+
+.HiddenID {
+  display: none;
+}
+
+.hiddentable {
+  border-bottom: solid;
+  border-bottom-color:rgb(223, 229, 236);
+  border-width: 2px;
+  border-radius: 2px;
+}
+
+#edit-mark-form .top-option {
+  margin: auto;
+  width: 50%;
+  width: 110px;
+}
+
+.GradeBackend:hover {
+  color: rgb(42, 119, 206);
+  margin-bottom: 10px;
+}

@@ -53,6 +53,16 @@ def close_connection(exception):
 
 # ---------------------------------------------- Webpages ---------------------------------------------
 
+@app.route('/login', methods=['GET', 'POST'])
+def login():
+    error = None
+    # TODO: query database and story usernames and password in a dict
+    # if request.method == 'GET':
+
+    if request.method == 'POST':
+        if request.form['username'] != 'anna.b' or request.form['password'] != '123': #placeholder credentials (will integrate with database)
+            error = "Username or password incorrect."
+
 @app.route('/sviewgrades.html', methods=['GET', 'POST'])
 def student_view_grades():
     if request.method == 'GET':
@@ -79,31 +89,28 @@ def student_view_grades():
 def instructor_view_grades():
     if session['user_type'] != "instructor":       
         return redirect(redirect_url())
-    if request.method == 'GET':
+    if request.method == 'POST':
+        # Submit Marks button calls db.execute
         db = get_db()
-        # Each row from the table is placed in dictionary form
-        db.row_factory = make_dicts
-        students = []
-        # Inside DB are some tables.
-        for item in query_db('select * from STUDENT NATURAL JOIN GRADES'):
-            students.append(item)
-        db.close()
-        
-        return render_template('iviewgrades.html', studentH=students)
-    else:  # Work in Progress - For Instructor to enter marks
-        # request.form['grade']
-        # request.form['examname']
-        # request.form['utorid']
         try:
-            db = get_db()
-            db.execute('UPDATE GRADES SET ?=? WHERE UTORID=?', [examname], [grade], [utorid])
-            db.close()
+            grade = request.form['new-grade']
+            examname = request.form['list-examname']
+            utorid = request.form["list-utorid"]
 
-            return render_template('iviewgrades.html')
+            db.execute('UPDATE GRADES2 SET ?=? WHERE UTORID=?', [examname, grade, utorid])
+            db.commit
         except db.Error as err:
             return redirect(redirect_url())
         finally:
             db.close()
+    
+    db = get_db()
+    db.row_factory = make_dicts
+    students = []
+    for item in query_db('select * from STUDENT NATURAL JOIN GRADES2'):
+        students.append(item)
+        
+    return render_template('iviewgrades.html', studentH=students, iview_edit=session['iview_edit'], ulist=get_student_utor_ids(), elist=get_exam_names())
 
 # Instructor views feedback, removes feedback
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
@@ -154,6 +161,7 @@ def root():
 def instructor_panel_page():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
+    session['iview_edit'] = False
     return render_template('instructorpanel.html')
 
 @app.route('/assignments.html')
@@ -198,3 +206,20 @@ def tutorials_page():
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
+
+# -------------------------------------------- Helper Functions --------------------------
+
+# retrieves a list of utorids from student.
+def get_student_utor_ids():    
+    db = sqlite3.connect(DATABASE)
+    db.row_factory = make_dicts
+    students = []
+    for item in query_db('select UTORID from STUDENT'):
+        students.append(item)
+    return students
+
+# returns exam & assignment names
+def get_exam_names():
+    exams = ["A1","A2","A3","T1","T2","T3","FINAL"]
+    return exams
+
