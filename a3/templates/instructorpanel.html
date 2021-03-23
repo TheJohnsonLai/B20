@@ -1,30 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/instructor.css"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/instructor.css" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>CSCB63: Instructor Panel</title>
 </head>
 
 <body>
     <header>
         <div class="nav-bar">
-            <a href="index.html">Home</a>
-            <a href="calendar.html">Calendar</a>
-            <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
-            <a href="lectures.html">Lectures</a>
-            <a href="tutorials.html">Labs</a>
-            <a href="assignments.html">Assignments</a>
-            <a href="tests.html">Tests</a>
-            <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
-            <a href="feedback.html">Anonymous Feedback</a>
-            <a href="team.html">Course Team</a>
-            <a href="links.html">Links</a>
-            <a class="active" href="instructorpanel.html">Instructor Panel</a>
+            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
+            <div id="nav-menu">
+                <a href="index.html">Home</a>
+                <a href="calendar.html">Calendar</a>
+                <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
+                <a href="lectures.html">Lectures</a>
+                <a href="tutorials.html">Labs</a>
+                <a href="assignments.html">Assignments</a>
+                <a href="tests.html">Tests</a>
+                <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
+                <a href="feedback.html">Anonymous Feedback</a>
+                <a href="team.html">Course Team</a>
+                <a href="links.html">Links</a>
+                <a class="active" href="instructorpanel.html">Instructor Panel</a>
+            </div>
         </div>
     </header>
 
@@ -37,37 +42,40 @@
     </section>
 
     <main>
-        <div class="PanelContainer" id="allPanels">    
+        <div class="PanelContainer" id="allPanels">
 
             <a href="iviewgrades.html">
-            <div class="PanelItem" id="panel1">
-                <header class="Panel-Head">
-                    <h2>Grades</h2>
-                </header>
-                <div class="Panel-Info">
-                    <p>View student grades.</p>
+                <div class="PanelItem" id="panel1">
+                    <header class="Panel-Head">
+                        <h2>Grades</h2>
+                    </header>
+                    <div class="Panel-Info">
+                        <p>View student grades.</p>
+                    </div>
                 </div>
-            </div></a>     
+            </a>
 
             <a href="iviewremarks.html">
-            <div class="PanelItem" id="panel2">
-                <header class="Panel-Head">
-                    <h2>Remarks</h2>
-                </header>
-                <div class="Panel-Info">
-                    <p>View student remark requests.</p>
+                <div class="PanelItem" id="panel2">
+                    <header class="Panel-Head">
+                        <h2>Remarks</h2>
+                    </header>
+                    <div class="Panel-Info">
+                        <p>View student remark requests.</p>
+                    </div>
                 </div>
-            </div></a>      
+            </a>
 
             <a href="iviewfeedback.html">
-            <div class="PanelItem" id="panel3">
-                <header class="Panel-Head">
-                    <h2>Feedback</h2>
-                </header>
-                <div class="Panel-Info">
-                    <p>View student feedback.</p>
+                <div class="PanelItem" id="panel3">
+                    <header class="Panel-Head">
+                        <h2>Feedback</h2>
+                    </header>
+                    <div class="Panel-Info">
+                        <p>View student feedback.</p>
+                    </div>
                 </div>
-            </div></a>
+            </a>
         </div>
     </main>
 
@@ -84,6 +92,8 @@
     </div>
 
     <script src="../static/js/instructorpanel.js"></script>
-
+    <script src="../static/js/mobile.js"></script>
+    
 </body>
+
 </html>
