@@ -14,20 +14,23 @@
     <header>
         <div class="nav-bar">
             <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
+            <div id="hidden-header"><b>C S C // B 6 3</b></div>
             <div id="nav-menu">
-                <a href="index">Home</a>
-                <a href="calendar">Calendar</a>
-                <a href="https://piazza.com/class/kju7e2uwa8p3sf">Discussion Board</a>
-                <a href="lectures">Lectures</a>
-                <a href="tutorials">Labs</a>
-                <a href="assignments">Assignments</a>
-                <a href="tests">Tests</a>
-                <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
-                <a href="feedback">Anonymous Feedback</a>
-                <a href="team">Course Team</a>
-                <a href="links">Links</a>
+                <a href="index.html">Home</a>
+                <a href="calendar.html">Calendar</a>
+                <a href="https://piazza.com/class/kju7e2uwa8p3sf.html">Discussion Board</a>
+                <a href="lectures.html">Lectures</a>
+                <a class="active" href="tutorials.html">Labs</a>
+                <a href="assignments.html">Assignments</a>
+                <a href="tests.html">Tests</a>
+                <a href="https://markus.utsc.utoronto.ca/cscb63w21/">MarkUs</a>
+                {% if user_type != "instructor" %}
+                <a href="feedback.html">Anonymous Feedback</a>
+                {% endif %}
+                <a href="team.html">Course Team</a>
+                <a href="links.html">Links</a>
                 {% if user_type == "instructor" %}
-                <a href="instructorpanel">Instructor Panel</a>
+                <a href="instructorpanel.html">Instructor Panel</a>
                 {% endif %}
                 {% if user_type == "student" %}
                 <a href="sviewgrades.html">Grade</a>

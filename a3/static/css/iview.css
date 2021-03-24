@@ -1,11 +1,5 @@
 @import "styles.css";
 
-/* Current page */
-.nav-bar a.active {
-    background-color: #1e1c97;
-    color: white;
-}
-
 .nav-bar a:hover {
     background: #ddd;
     color: black;
@@ -40,7 +34,7 @@
   display: none;
 }
 
-.hiddentable {
+.iview-grades-table {
   border-bottom: solid;
   border-bottom-color:rgb(223, 229, 236);
   border-width: 2px;
