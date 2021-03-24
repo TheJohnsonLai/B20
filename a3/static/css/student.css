@@ -59,7 +59,7 @@ button:hover{
 }
 
 
-.request_box {
+.box {
   display: none;
   position: fixed;
   z-index: 1; 
@@ -120,4 +120,8 @@ input[type=submit] {
 
 input[type=submit]:hover {
   background-color: rgb(44, 113, 218);
+}
+
+input[type=text]{
+  display: none;
 }

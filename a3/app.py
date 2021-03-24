@@ -68,25 +68,28 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/sviewgrades', methods=['GET', 'POST'])
 def student_view_grades():
-    if request.method == 'GET':
-        db = get_db()
-        # Each row from the table is placed in dictionary form
-        db.row_factory = make_dicts
-        # request.args.get('utorid')#'utorid'can be other things depend on what login page returns
-        utorid = 1
-        student_name = query_db(
-            'select * from STUDENT where UTORID = ?', [utorid], one=True)
-        name = student_name['FNAME'] + ' ' + student_name['LNAME']
-        # If no such student to be implemented
+    db = get_db()
+    # Each row from the table is placed in dictionary form
+    db.row_factory = make_dicts
+    # request.args.get('utorid')#'utorid'can be other things depend on what login page returns
+    utorid = 1
+    student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
+    name = student_name['FNAME'] + ' ' + student_name['LNAME']
+    # If no such student to be implemented....
 
-        # Inside DB are some tables.
-        student_grades = query_db(
-            'select * from GRADES where UTORID = ?', [utorid], one=True)
-        db.close()
-        # return student_grades.__str__()
-        return render_template('sviewgrades.html', grade=student_grades, name=name)
+    # Inside DB are some tables.
+    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
+
+    if request.method == 'POST':
+        db = get_db()
+        comment = request.form['explain']
+        examname = request.form['remark_area']
+        db.execute("INSERT INTO REMARKS VALUES (?, ?, ?)",[1, examname, comment])
+        db.commit()
+    
+    db.close()
+    return render_template('sviewgrades.html', grade=student_grades, name=name)
 
 # Instructor View - All Grades
 @app.route('/iviewgrades', methods=['GET', 'POST'])

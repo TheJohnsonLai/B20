@@ -20,9 +20,12 @@
             <a href="assignments">Assignments</a>
             <a href="tests">Tests</a>
             <a href="https://markus.utsc.utoronto.ca/cscb20w21/">MarkUs</a>
-            <a href="feedback">Anonymous Feedback</a>
-            <a href="team">Course Team</a>
-            <a href="links">Links</a>
+            <a href="feedback.html">Anonymous Feedback</a>
+            <a href="team.html">Course Team</a>
+            <a href="links.html">Links</a>
+            {% if user_type == "student" %}
+            <a href="sviewgrades.html">Grade</a>
+            {% endif %}
         </div>
     </header>
 
@@ -37,9 +40,9 @@
                 <th>Assignment 1</th>
                 <th>Assignment 2</th>
                 <th>Assignment 3</th>
-                <th>Term Test 1</th>
-                <th>Term Test 2</th>
-                <th>Term Test 3</th>
+                <th>Test 1</th>
+                <th>Test 2</th>
+                <th>Test 3</th>
                 <th>Final Exam</th>
             </tr>
             <tr>
@@ -52,25 +55,32 @@
                 <td>{{grade['FINAL']}}</td>
             </tr>
             <tr>
-                <td><button id="A1">Request Remark</button></td>
-                <td><button id="A2">Request Remark</button></td>
-                <td><button id="A3">Request Remark</button></td>
-                <td><button id="T1">Request Remark</button></td>
-                <td><button id="T2">Request Remark</button></td>
-                <td><button id="T3">Request Remark</button></td>
-                <td><button id="FINAL">Request Remark</button></td>
+                <td><button id="Assignment 1">Request Remark</button></td>
+                <td><button id="Assignment 2">Request Remark</button></td>
+                <td><button id="Assignment 3">Request Remark</button></td>
+                <td><button id="Test 1">Request Remark</button></td>
+                <td><button id="Test 2">Request Remark</button></td>
+                <td><button id="Test 3">Request Remark</button></td>
+                <td><button id="Final Exam">Request Remark</button></td>
             </tr>
         </table>
-        <div id="my_request_box" class="request_box">
+
+
+        <div id="my_request_box" class="box">
             <div class="box-content">
               <span id="close_box" class="close">&times;</span>
               <p id="title">REQUEST FOR REMARK A1</p>
               <hr>
-              <form>
-                <textarea rows="10", placeholder="Explain why you ask for a remark..."></textarea>
-                <center><input type="submit" value="Submit"></center>
+              <form action="sviewgrades.html" method="POST" id="remark_request">
+                <input id="remark_area" type="text" name="remark_area">
+                <textarea id="explain" name="explain" rows="10" placeholder="Explain why you ask for a remark..."></textarea>
+                <center><input type="submit" value="Submit" id="remark_submit" ></center>
               </form>
             </div>
+        </div>
+
+        <div id="my_request_box" class="box">
+
         </div>
     </div>
 
