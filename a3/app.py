@@ -123,6 +123,8 @@ def instructor_view_feedback():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
 
+    session['username'] = "instructor1" # To be changed later, when authentication is added.
+
     db = get_db()
     if (request.method == 'POST'):
         unixtime = request.form['created-date']
@@ -239,6 +241,13 @@ def tutorials_page():
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('login.html'), 404
+
+# Runs after a request, clears cache (Development purposes)
+@app.after_request
+def add_header(response):
+    # Sustains cache (static files) for 300 seconds
+    response.headers['Cache-Control'] = 'public, max-age=300'
+    return response
 
 # -------------------------------------------- Helper Functions --------------------------
 
