@@ -11,6 +11,7 @@
 body {
 	font-family: 'Poppins';
 	background: rgb(220, 229, 238);
+	margin: 0;
 }
 
 .card-head {
@@ -34,7 +35,7 @@ body {
 	margin: 0;
     overflow: hidden;
     background: rgb(2,0,36);
-	background: linear-gradient(180deg, rgba(2,0,36,1) 10%, rgba(8,12,18,1) 20%, rgba(47,133,222,0.742734593837535) 100%);
+	background: linear-gradient(180deg, rgba(2,0,36,1) 10%, rgba(8,12,18,1) 20%, rgba(130, 164, 204, 0.743) 100%);
     position: fixed;
     top: 0;
     width: 100%; 
@@ -65,7 +66,7 @@ body {
 
 .intro {
 	color : #001277;
-	top:500px;
+	top: 500px;
 	margin-top: 100px;
 	margin-left: auto;
     margin-right: auto;

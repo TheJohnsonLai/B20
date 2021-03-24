@@ -3,10 +3,9 @@
 .nav-bar a.expand-menu-button {
 	float: left;
 	background: rgb(103,82,31);
-background: linear-gradient(180deg, rgba(103,82,31,0.47102591036414565) 0%, rgba(255,255,255,0.47942927170868344) 100%);
+	background: linear-gradient(180deg, rgba(103,82,31,0.47102591036414565) 0%, rgba(255,255,255,0.47942927170868344) 100%);
 	border-right-style: solid;
-	border-right-color: rgb(199, 199, 199);
-	border-bottom-color: rgb(45, 57, 121);
+	border-right-color: rgb(112, 112, 112);
 	border-right-width: 1px;
 	color: rgb(255, 255, 255);
 }
@@ -15,7 +14,7 @@ background: linear-gradient(180deg, rgba(103,82,31,0.47102591036414565) 0%, rgba
 	display: none;
     background: rgb(2,0,36);
 	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(8,12,18,1) 8%, rgba(47,133,222,0.742734593837535) 100%);
-	padding-left: 9%;
+	padding-left: 10%;
 	padding-right: 10%;
 	color: white;
 	font-size: 35px;
@@ -45,7 +44,7 @@ background: linear-gradient(180deg, rgba(103,82,31,0.47102591036414565) 0%, rgba
 		display: inline-block;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
-		border-bottom-color: rgb(199, 199, 199);
+		border-bottom-color: rgb(112, 112, 112);
   	}
 
 	#nav-menu {
