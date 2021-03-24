@@ -1,7 +1,7 @@
 # Required imports
 import sqlite3
 # g is used for database, not all will be used
-from flask import Flask, render_template, request, g, redirect, session, url_for, current_app
+from flask import Flask, render_template, request, g, redirect, session, url_for, abort
 
 DATABASE = './assignment3.db'
 
@@ -93,12 +93,15 @@ def student_view_grades():
 def instructor_view_grades():
     if session['user_type'] != "instructor":       
         return redirect(redirect_url())
+
     db = get_db()
+
     if (request.method == 'POST'):
         # Submit Marks button calls db.execute
         grade = request.form['new-grade']
         examname = request.form['list-examname']
         utorid = request.form["list-utorid"]
+        # Table Column names cannot be accessed normally
         sql = """UPDATE GRADES SET {} = {} WHERE UTORID = '{}'""".format(examname, grade, utorid)
         cur = db.cursor()
         cur.execute(sql)
@@ -115,10 +118,18 @@ def instructor_view_grades():
 def instructor_view_feedback():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
-    feedback = []
+
     db = get_db()
+    if (request.method == 'POST'):
+        unixtime = request.form['created-date']
+        sql = """DELETE FROM FEEDBACK WHERE CREATED = {}""".format(unixtime)
+        cur = db.cursor()
+        cur.execute(sql)
+        db.commit
+
+    feedback = []
     # View feedback that is directed towards this user (instructor)
-    for item in query_db('select FA, FB, FC, FD from FEEDBACK NATURAL JOIN USER WHERE USERNAME LIKE ?', [session['username']]):
+    for item in query_db('select FA, FB, FC, FD, CREATED from FEEDBACK NATURAL JOIN USER WHERE USERNAME LIKE ?', [session['username']]):
         feedback.append(item)
     db.close()
 
@@ -129,10 +140,18 @@ def instructor_view_feedback():
 def instructor_view_remarks():
     if session['user_type'] != "instructor": 
         return redirect(redirect_url())
-    remarks = []
+
     db=get_db()
+    if (request.method == 'POST'):
+        unixtime = request.form['created-date']
+        sql = """DELETE FROM REMARKS WHERE CREATED = {}""".format(unixtime)
+        cur = db.cursor()
+        cur.execute(sql)
+        db.commit
+
+    remarks = []
     # View remark requests.
-    for item in query_db('select UTORID, FNAME, LNAME, EXAMNAME, COMMENT FROM REMARKS NATURAL JOIN STUDENT'):
+    for item in query_db('select UTORID, FNAME, LNAME, EXAMNAME, COMMENT, CREATED FROM REMARKS NATURAL JOIN STUDENT'):
         remarks.append(item)
     db.close()
 
@@ -194,9 +213,10 @@ def tests_page():
 def tutorials_page():
     return render_template('tutorials.html')
 
+# Bad links redirect to the login page
 @app.errorhandler(404)
 def page_not_found(e):
-    return render_template('/'), 404
+    return render_template('login.html'), 404
 
 # -------------------------------------------- Helper Functions --------------------------
 

@@ -6,6 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/iview.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/iviewfeedback.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>CSCB63: Instructor Panel - Remark Requests</title>
@@ -57,6 +59,14 @@
                 <td>{{ item['FNAME'] }} {{ item['LNAME'] }}</td>
                 <td>{{ item['EXAMNAME'] }}</td>
                 <td>{{ item['COMMENT'] }}</td>
+                <form name="rm-form" id="rm-form" action="iviewremarks" method="POST">
+                    <td id="hidden-td">
+                        <button id="trash-btn" type="submit" name="submission" value="delete"><i class="fa fa-trash-o"
+                                form="feedback-form"></i></button>
+                    </td>
+                    <input class="hidden-key" type="number" id="created-date" name="created-date"
+                        value="{{item['CREATED']}}">
+                </form>
             </tr>
             {% endfor %}
         </table>
@@ -74,6 +84,7 @@
         </div>
     </div>
     <script src="../static/js/mobile.js"></script>
+    <script src="../static/js/iviewfeedback.js"></script>
 </body>
 
 </html>

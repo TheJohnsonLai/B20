@@ -1,0 +1,16 @@
+.fa.fa-trash-o {
+    opacity: 0.5;
+    transition: 0.2s;
+}
+
+.fa.fa-trash-o:hover {
+    opacity: 1;
+}
+
+.hidden-key {
+    display: none;
+}
+
+#hidden-td {
+    border: none;
+}
