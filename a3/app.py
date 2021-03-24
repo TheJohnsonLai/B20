@@ -68,6 +68,7 @@ def login():
     return render_template('login.html', error=error)
 
 
+@app.route('/sviewgrades.html', methods=['GET', 'POST'])
 def student_view_grades():
     db = get_db()
     # Each row from the table is placed in dictionary form
@@ -92,7 +93,7 @@ def student_view_grades():
     return render_template('sviewgrades.html', grade=student_grades, name=name)
 
 # Instructor View - All Grades
-@app.route('/iviewgrades', methods=['GET', 'POST'])
+@app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
     if session['user_type'] != "instructor":       
         return redirect(redirect_url())
@@ -117,7 +118,7 @@ def instructor_view_grades():
     return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=get_exam_names())
 
 # Instructor views feedback, removes feedback
-@app.route('/iviewfeedback', methods=['GET', 'POST'])
+@app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
@@ -139,7 +140,7 @@ def instructor_view_feedback():
     return render_template('iviewfeedback.html', feedbackH=feedback)
 
 # Instructor views remark requests, removes remark requests
-@app.route('/iviewremarks', methods=['GET', 'POST'])
+@app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
     if session['user_type'] != "instructor": 
         return redirect(redirect_url())
@@ -160,6 +161,26 @@ def instructor_view_remarks():
 
     return render_template('iviewremarks.html', remarksH=remarks)
 
+@app.route('/feedback.html', methods=['GET', 'POST'])
+def feedback_page():    
+    db = get_db()
+    if (request.method == 'POST'):    
+        instructor_id = request.form['instructor_id'] 
+        c1 = request.form['comment1'] 
+        c2 = request.form['comment2'] 
+        c3 = request.form['comment3'] 
+        c4 = request.form['comment4']
+        previous_max_time = query_db('select MAX(CREATED) FROM FEEDBACK', one=True)['MAX(CREATED)'] + 1
+        sql = """INSERT INTO FEEDBACK VALUES ({},{},{},{},{},{})""".format(instructor_id, c1, c2, c3, c4,previous_max_time)
+        cur = db.cursor()
+        cur.execute(sql)
+        db.commit
+ 
+    ids = query_db('select * from INSTRUCTOR')
+    db.close()
+
+    return render_template('feedback.html', ilist=ids)
+
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
 def redirect_url(default='/'):
@@ -172,47 +193,45 @@ def root():
     return render_template('login.html')  # Change to landing html!
 
 # Instructor Panel
-@app.route('/instructorpanel')
+@app.route('/instructorpanel.html')
 def instructor_panel_page():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
     return render_template('instructorpanel.html')
 
-@app.route('/assignments')
+@app.route('/assignments.html')
 def assignments_page():
     return render_template('assignments.html')
 
-@app.route('/calendar')
+@app.route('/calendar.html')
 def calendar_page():
     return render_template('calendar.html')
 
-@app.route('/feedback')
-def feedback_page():
-    return render_template('feedback.html')
-
-@app.route('/index')
+@app.route('/index.html')
 def index_page():
     return render_template('index.html')
 
-@app.route('/lectures')
+@app.route('/lectures.html')
 def lectures_page():
     return render_template('lectures.html')
 
-@app.route('/links')
+@app.route('/links.html')
 def links_page():
-    # Testing - Instructor View (Remove later)
+    # Testing - Applies Instructor View (Remove later)
     session['user_type'] = "instructor"
     return render_template('links.html', user_type=session['user_type'])
 
-@app.route('/team')
+@app.route('/team.html')
 def team_page():
+    # Testing - Applies Student View (Remove later)
+    session['user_type'] = "student"
     return render_template('team.html')
 
-@app.route('/tests')
+@app.route('/tests.html')
 def tests_page():
     return render_template('tests.html')
 
-@app.route('/tutorials')
+@app.route('/tutorials.html')
 def tutorials_page():
     return render_template('tutorials.html')
 
