@@ -1,41 +1,21 @@
-
-/* Menu Button*/
-.nav-bar a.expand-menu-button {
-	float: left;
-	background: rgb(103,82,31);
-	background: linear-gradient(180deg, rgba(103,82,31,0.47102591036414565) 0%, rgba(255,255,255,0.47942927170868344) 100%);
-	border-right-style: solid;
-	border-right-color: rgb(112, 112, 112);
-	border-right-width: 1px;
-	color: rgb(255, 255, 255);
-}
-
-.nav-bar #hidden-header {
-	display: none;
-    background: rgb(2,0,36);
-	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(8,12,18,1) 8%, rgba(47,133,222,0.742734593837535) 100%);
-	padding-left: 10%;
-	padding-right: 10%;
-	color: white;
-	font-size: 35px;
-    text-shadow: 0px 0px 4px;
-    letter-spacing: 1em;
-}
-
-
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .5em;
 	}
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 960px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .3em;
 	}
 }
 
 /* Mobile - converts navbar to vertical when screen width is too small*/
-@media screen and (max-width: 600px) {	
+@media screen and (max-width: 780px) {	
+	.nav-bar {
+		background-color: red;
+		width: 70%;
+	}
+
 	.nav-bar #hidden-header {
 		letter-spacing: .2em;
 	}

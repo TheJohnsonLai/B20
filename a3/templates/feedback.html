@@ -1,21 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link rel="stylesheet" type="text/css" href="../static/css/feedback.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>          
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/feedback.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"  />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>CSCB63: Anonymous Feedback</title>
 </head>
+
 <body>
     <header>
         <div class="nav-bar">
-            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
-            <div id="hidden-header"><b>C S C // B 6 3</b></div>
+            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                    class="fas fa-bars"></i></i></a>
+            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+            <div id="hidden-header">
+                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+            </div>
             <div id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="calendar.html">Calendar</a>
@@ -51,7 +56,7 @@
     <main>
         <form class="central-form" name="a-fb-form" action="feedback.html" method="POST">
             <br>
-            <b>Instructor:</b>        
+            <b>Instructor:</b>
             <select class="top-option" id="instructor_id" name="instructor_id" placeholder="1">
                 <option value="--">--</option>
                 {% for item in ilist %}
@@ -62,29 +67,29 @@
             <br>
             <b>Feedback:</b>
             What do you like about the instructor teaching?
-            <textarea rows="4" cols="50" name="comment1"></textarea>
+            <textarea rows="4" cols="50" name="comment1" value=""></textarea>
             <br>
             What do you recommend the instructor to do to improve their teaching?
-            <textarea rows="4" cols="50" name="comment2"></textarea>
+            <textarea rows="4" cols="50" name="comment2" value=""></textarea>
             <br>
             What do you like about the tutorials?
-            <textarea rows="4" cols="50" name="comment3"></textarea>
+            <textarea rows="4" cols="50" name="comment3" value=""></textarea>
             <br>
             What do you recommend the TAs do to improve their tutorials?
-            <textarea rows="4" cols="50" name="comment4"></textarea>
+            <textarea rows="4" cols="50" name="comment4" value=""></textarea>
             <br>
             <input class="fb-btn-c" name="fb-btn" type="submit" value="Submit">
             <br><br>
-        </form> 
+        </form>
 
     </main>
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
@@ -92,4 +97,5 @@
     </div>
     <script src="../static/js/mobile.js"></script>
 </body>
+
 </html>

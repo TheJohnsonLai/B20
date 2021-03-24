@@ -5,17 +5,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/iview.css" />
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" rel="stylesheet" />
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/iviewgrades.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>CSCB63: Instructor Panel - All Grades</title>
 </head>
 
 <body>
     <header>
         <div class="nav-bar">
-            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
-            <div id="hidden-header"><b>C S C // B 6 3</b></div>
+            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                    class="fas fa-bars"></i></i></a>
+            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+            <div id="hidden-header">
+                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+            </div>
             <div id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="calendar.html">Calendar</a>
@@ -42,7 +46,7 @@
 
     <div class="icontent" id="iviewcontent">
         <div class="ioption" id="edit-mark-form">
-            <form name="editform" action="iviewgrades.html" method="POST">
+            <form name="editform" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
                 <table class="iview-grades-table">
                     <tr>
                         <td>
@@ -67,8 +71,7 @@
                         </td>
                     </tr>
                 </table>
-                <input class="top-option" type="submit" name="submission" onclick="myfunction()" class="GradeBackend"
-                    value="Submit marks">
+                <input class="top-option" type="submit" name="submission" class="GradeBackend" value="Submit marks">
             </form>
         </div>
         <hr>

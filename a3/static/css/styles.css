@@ -12,12 +12,35 @@ body {
 	font-family: 'Poppins';
 	background: rgb(220, 229, 238);
 	margin: 0;
+	display: flex; 
+	min-height: 95vh;
+	flex-direction: column;
+}
+/* Force footer down with flex-direction column */
+main {	
+	flex: 1;
 }
 
-.card-head {
-	padding: 10px;
-	background-color: #333;
-	width: 100%;
+/* Menu Button*/
+.permanent-option {
+	height: 100%;
+	float: left;
+	border-right-style: solid;
+	border-right-color: rgb(112, 112, 112);
+	border-right-width: 1px;
+	color: rgb(255, 255, 255);
+}
+
+.nav-bar #hidden-header {
+	display: none;
+    background: rgb(2,0,36);
+	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(8,12,18,1) 8%, rgba(47,133,222,0.742734593837535) 100%);
+	padding-left: 10%;
+	padding-right: 10%;
+	color: white;
+	font-size: 35px;
+    text-shadow: 0px 0px 4px;
+    letter-spacing: 1em;
 }
 
 #nav-menu {
@@ -44,6 +67,7 @@ body {
 }
 
 .nav-bar a {
+	/*float: left; Dropdown soon*/
     color: #f2f2f2;
     text-align: center;
     padding: 14px 16px;
@@ -52,10 +76,24 @@ body {
     transition: .4s;
 }
 
-.nav-bar a:hover {
-	background: rgb(255,255,255);
-	background: linear-gradient(0deg, rgba(255,255,255,0) 0%, rgba(211,216,221,0.711922268907563) 100%);
+.nav-bar #hidden-header:hover {
+	background: none;
+}
+
+.nav-bar #hidden-header a:hover {
+	color:rgb(71, 228, 240);
+}
+
+.nav-bar #nav-menu a:hover, .permanent-option:hover {
+	background: rgb(13,68,73);
+	background: linear-gradient(180deg, rgba(13,68,73,0.23012955182072825) 0%, rgba(255,255,255,0.12648809523809523) 100%);
     color: rgb(172, 235, 216);
+}
+
+.card-head {
+	padding: 10px;
+	background-color: #333;
+	width: 100%;
 }
 
 .card-info p{

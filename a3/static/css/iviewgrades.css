@@ -1,10 +1,5 @@
 @import "styles.css";
 
-.nav-bar a:hover {
-    background: #ddd;
-    color: black;
-}
-
 .icontent {
     display: flex;
     flex-direction: column;
@@ -50,4 +45,22 @@
 .GradeBackend:hover {
   color: rgb(42, 119, 206);
   margin-bottom: 10px;
+}
+
+/* instructor-feedback and remarks shares this css */
+.fa.fa-trash-o {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+.fa.fa-trash-o:hover {
+  opacity: 1;
+}
+
+.hidden-key {
+  display: none;
+}
+
+#hidden-td {
+  border: none;
 }
