@@ -1,7 +1,7 @@
 # Required imports
 import sqlite3
 # g is used for database, not all will be used
-from flask import Flask, render_template, request, g, flash, redirect, render_template, request, session, abort, url_for
+from flask import Flask, render_template, request, g, redirect, session, url_for, current_app
 
 DATABASE = './assignment3.db'
 
@@ -11,7 +11,8 @@ def get_db():
     db = getattr(g, '_database', None)
     if db is None:
         # Open a connection
-        db = g._database = sqlite3.connect(DATABASE)
+        db = g._database = sqlite3.connect(DATABASE, isolation_level=None)
+        db.row_factory = make_dicts
     return db
 
 # the function query_db is from
@@ -67,7 +68,7 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/sviewgrades.html', methods=['GET', 'POST'])
+@app.route('/sviewgrades', methods=['GET', 'POST'])
 def student_view_grades():
     if request.method == 'GET':
         db = get_db()
@@ -87,123 +88,122 @@ def student_view_grades():
         # return student_grades.__str__()
         return render_template('sviewgrades.html', grade=student_grades, name=name)
 
-# Can change grades. Currently using dummy table GRADES2
-@app.route('/iviewgrades.html', methods=['GET', 'POST'])
+# Instructor View - All Grades
+@app.route('/iviewgrades', methods=['GET', 'POST'])
 def instructor_view_grades():
     if session['user_type'] != "instructor":       
         return redirect(redirect_url())
-    if request.method == 'POST':
-        # Submit Marks button calls db.execute
-        db = get_db()
-        try:
-            grade = request.form['new-grade']
-            examname = request.form['list-examname']
-            utorid = request.form["list-utorid"]
-
-            db.execute('UPDATE GRADES2 SET ?=? WHERE UTORID=?', [examname, grade, utorid])
-            db.commit
-        except db.Error as err:
-            return redirect(redirect_url())
-        finally:
-            db.close()
-    
     db = get_db()
-    db.row_factory = make_dicts
-    students = []
-    for item in query_db('select * from STUDENT NATURAL JOIN GRADES2'):
-        students.append(item)
-        
-    return render_template('iviewgrades.html', studentH=students, iview_edit=session['iview_edit'], ulist=get_student_utor_ids(), elist=get_exam_names())
+    if (request.method == 'POST'):
+        # Submit Marks button calls db.execute
+        grade = request.form['new-grade']
+        examname = request.form['list-examname']
+        utorid = request.form["list-utorid"]
+        sql = """UPDATE GRADES SET {} = {} WHERE UTORID = '{}'""".format(examname, grade, utorid)
+        cur = db.cursor()
+        cur.execute(sql)
+        db.commit
+    
+    students = query_db('select * from STUDENT NATURAL JOIN GRADES')  
+    ids = query_db('select UTORID from STUDENT')
+    db.close()
+            
+    return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=get_exam_names())
 
 # Instructor views feedback, removes feedback
-@app.route('/iviewfeedback.html', methods=['GET', 'POST'])
+@app.route('/iviewfeedback', methods=['GET', 'POST'])
 def instructor_view_feedback():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
-    db = get_db()
-    # Each row from the table is placed in dictionary form
-    db.row_factory = make_dicts
     feedback = []
-    # Sample username from session (To be implemented)
-    session['username'] = "instructor1"
+    db = get_db()
+    # View feedback that is directed towards this user (instructor)
     for item in query_db('select FA, FB, FC, FD from FEEDBACK NATURAL JOIN USER WHERE USERNAME LIKE ?', [session['username']]):
         feedback.append(item)
     db.close()
 
-    # return fb.__str__()
     return render_template('iviewfeedback.html', feedbackH=feedback)
 
 # Instructor views remark requests, removes remark requests
-@app.route('/iviewremarks.html', methods=['GET', 'POST'])
+@app.route('/iviewremarks', methods=['GET', 'POST'])
 def instructor_view_remarks():
     if session['user_type'] != "instructor": 
         return redirect(redirect_url())
-    db = get_db()
-    # Each row from the table is placed in dictionary form
-    db.row_factory = make_dicts
     remarks = []
-    # Inside DB are some tables.
+    db=get_db()
+    # View remark requests.
     for item in query_db('select UTORID, FNAME, LNAME, EXAMNAME, COMMENT FROM REMARKS NATURAL JOIN STUDENT'):
         remarks.append(item)
     db.close()
+
     return render_template('iviewremarks.html', remarksH=remarks)
 
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
-def redirect_url(default='index.html'):
+def redirect_url(default='/'):
     return request.args.get('next') or request.referrer or url_for(default)
     # Use >> return redirect(redirect_url()) << In function call
 
 # Landing page. What will it be?
 @app.route('/')
 def root():
-    return render_template('index.html')  # Change to landing html!
+    return render_template('login.html')  # Change to landing html!
 
 # Instructor Panel
-@app.route('/instructorpanel.html')
+@app.route('/instructorpanel')
 def instructor_panel_page():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
-    session['iview_edit'] = False
     return render_template('instructorpanel.html')
 
-@app.route('/assignments.html')
+@app.route('/assignments')
 def assignments_page():
     return render_template('assignments.html')
 
-@app.route('/calendar.html')
+@app.route('/calendar')
 def calendar_page():
     return render_template('calendar.html')
 
-@app.route('/feedback.html')
+@app.route('/feedback')
 def feedback_page():
     return render_template('feedback.html')
 
-@app.route('/index.html')
+@app.route('/index')
 def index_page():
     return render_template('index.html')
 
-@app.route('/lectures.html')
+@app.route('/lectures')
 def lectures_page():
     return render_template('lectures.html')
 
-@app.route('/links.html')
+@app.route('/links')
 def links_page():
     # Testing - Instructor View (Remove later)
     session['user_type'] = "instructor"
     return render_template('links.html', user_type=session['user_type'])
 
-@app.route('/team.html')
+@app.route('/team')
 def team_page():
     return render_template('team.html')
 
-@app.route('/tests.html')
+@app.route('/tests')
 def tests_page():
     return render_template('tests.html')
 
-@app.route('/tutorials.html')
+@app.route('/tutorials')
 def tutorials_page():
     return render_template('tutorials.html')
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template('/'), 404
+
+# -------------------------------------------- Helper Functions --------------------------
+
+# returns exam & assignment names
+def get_exam_names():
+    exams = ["A1","A2","A3","T1","T2","T3","FINAL"]
+    return exams
 
 # -------------------------------------------- Port --------------------------------------
 
@@ -213,19 +213,3 @@ def tutorials_page():
 if __name__ == '__main__':
     app.debug = True
     app.run()
-
-# -------------------------------------------- Helper Functions --------------------------
-
-# retrieves a list of utorids from student.
-def get_student_utor_ids():    
-    db = sqlite3.connect(DATABASE)
-    db.row_factory = make_dicts
-    students = []
-    for item in query_db('select UTORID from STUDENT'):
-        students.append(item)
-    return students
-
-# returns exam & assignment names
-def get_exam_names():
-    exams = ["A1","A2","A3","T1","T2","T3","FINAL"]
-    return exams

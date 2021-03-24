@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
+        rel="stylesheet"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <title>CSCB63: Lectures</title>
+</head>
+<body>
+    <div class="container">
+        <h1><b>Welcome to the CSCB63 Course Website</b></h1>
+        <h3>Please login</h3>
+        <br>
+        <form action="" method="post">
+          <input type="text" placeholder="Username" name="username" value="{{
+            request.form.username }}">
+           <input type="password" placeholder="Password" name="password" value="{{
+            request.form.password }}">
+          <input class="btn btn-default" type="submit" value="Login">
+        </form>
+        {% if error %}
+          <p class="error"><strong>Error:</strong> {{ error }}
+        {% endif %}
+      </div>
+      <div class="footer">
+        <img src="../static/images/2.png" alt="some_text" id="icon"> 
+        
+        <div id="text">
+            <p> 
+                <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
+                <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
+            <p>
+        </div>
+    </div>
+    <script src="../static/js/mobile.js"></script>
+</body>
+</html>
