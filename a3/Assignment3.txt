@@ -6,8 +6,9 @@ Authentication
 Variables for the user that can be passed around html
 Python/Flask, GET/POST
 Javascript for forms
-CSS for Mobile max-width (@media screen and (max-width: 600px))
-HonorCode
 report.pdf
 
 assignment3.db current contains some tables with dummy data. table structure is not final.
+
+log:
+accidentally pushed empty login.html and overrode it
