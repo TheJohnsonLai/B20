@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>CSCB63: Course Team</title>
 </head>
+
 <body>
     <header>
         <div class="nav-bar">
-            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
-            <div id="hidden-header"><b>C S C // B 6 3</b></div>
+            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                    class="fas fa-bars"></i></i></a>
+            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+            <div id="hidden-header">
+                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+            </div>
             <div id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="calendar.html">Calendar</a>
@@ -51,31 +56,32 @@
         <section>
             <div class="course-card">
                 <header class="card-head">
-                  <h2>Anna Bretscher</h2>
+                    <h2>Anna Bretscher</h2>
                 </header>
                 <div class="card-info">
                     <img src="../static/images/prof_pic.jpg" class="prof-picture" alt="an image of the professor">
-                    <p><b>About Me: </b>Dr. Bretscher joined the department in 2004 after completing a Ph.D in Graph Theory at
-                         the University of Toronto and Master's and Bachelor's degrees at Queen's University. After teaching a course
-                          as a graduate student, Anna came to the realization that teaching students theoretical concepts is where her
-                           passion lies. In particular, she loves the challenge of simplifying difficult concepts and the reward of 
-                           successfully teaching new topics.</p>
+                    <p><b>About Me: </b>Dr. Bretscher joined the department in 2004 after completing a Ph.D in Graph
+                        Theory at
+                        the University of Toronto and Master's and Bachelor's degrees at Queen's University. After
+                        teaching a course
+                        as a graduate student, Anna came to the realization that teaching students theoretical concepts
+                        is where her
+                        passion lies. In particular, she loves the challenge of simplifying difficult concepts and the
+                        reward of
+                        successfully teaching new topics.</p>
                     <p><b>Email: </b><a href="anna.bretscher@utoronto.ca">anna.bretscher@utoronto.ca</a></p>
                 </div>
             </div>
         </section>
 
-        <section>
-            <div class="placeholder"></div>
-        </section>
     </main>
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
@@ -83,4 +89,5 @@
     </div>
     <script src="../static/js/mobile.js"></script>
 </body>
+
 </html>

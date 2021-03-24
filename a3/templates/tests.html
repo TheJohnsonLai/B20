@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>CSCB63: Tests</title>
 </head>
+
 <body>
     <header>
         <div class="nav-bar">
-            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
-            <div id="hidden-header"><b>C S C // B 6 3</b></div>
+            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                    class="fas fa-bars"></i></i></a>
+            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+            <div id="hidden-header">
+                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+            </div>
             <div id="nav-menu">
                 <a href="index.html">Home</a>
                 <a href="calendar.html">Calendar</a>
@@ -51,7 +56,7 @@
         <section>
             <div class="course-card">
                 <header class="card-head">
-                  <h2>Term Test 1</h2>
+                    <h2>Term Test 1</h2>
                 </header>
                 <div class="card-info">
                     <p><b>Content: </b>Material from A1 and corresponding lectures</p>
@@ -64,7 +69,7 @@
         <section>
             <div class="course-card">
                 <header class="card-head">
-                  <h2>Term Test 2</h2>
+                    <h2>Term Test 2</h2>
                 </header>
                 <div class="card-info">
                     <p><b>Content: </b>Material from A2 and corresponding lectures</p>
@@ -77,7 +82,7 @@
         <section>
             <div class="course-card">
                 <header class="card-head">
-                  <h2>Term Test 3</h2>
+                    <h2>Term Test 3</h2>
                 </header>
                 <div class="card-info">
                     <p><b>Content: </b>Material from A3 and corresponding lectures</p>
@@ -90,10 +95,10 @@
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
@@ -101,4 +106,5 @@
     </div>
     <script src="../static/js/mobile.js"></script>
 </body>
+
 </html>

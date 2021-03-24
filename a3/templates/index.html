@@ -1,20 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" type="text/css" href="../static/css/styles.css"/>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" 
-          rel="stylesheet"/>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="../static/css/styles.css" />
+    <link rel="stylesheet"href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>CSCB63: Home</title>
 </head>
+
 <body>
     <header>
         <div class="nav-bar">
-            <a href="javascript:void(0);" class="expand-menu-button" onclick="flipMenu()">Menu</a>
-            <div id="hidden-header"><b>C S C // B 6 3</b></div>
+            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                    class="fas fa-bars"></i></i></a>
+            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+            <div id="hidden-header">
+                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+            </div>
             <div id="nav-menu">
                 <a class="active" href="index.html">Home</a>
                 <a href="calendar.html">Calendar</a>
@@ -42,27 +47,31 @@
         <article>
             <section>
                 &nbsp;&nbsp;&nbsp;&nbsp;
-                <div class = "intro">
+                <div class="intro">
                     <h2>CSCB63: Design and Analysis of Data Structures</h2>
                 </div>
             </section>
             &nbsp;&nbsp;&nbsp;&nbsp;
             <section>
                 <!--Source for image below (I found it through google.com): https://cdn.lynda.com/course/751323/751323-637478807055198001-16x9.jpg-->
-                <img src="../static/images/background.jpg" class = "home-img" alt="an image for b63 website">
+                <img src="../static/images/background.jpg" class="home-img" alt="an image for b63 website">
             </section>
             <section>
                 <div class="course-card">
                     <header class="card-head">
-                      <h2>Course Description</h2>
+                        <h2>Course Description</h2>
                     </header>
-                
+
                     <div class="card-info">
-                        <p>Design, analysis, implementation and comparison of efficient data structures for common abstract data types. Priority
-                            queues: heaps and mergeable heaps. Dictionaries: balanced binary search trees, B-trees, hashing. Amortization: data structures 
-                            for managing dynamic tables and disjoint sets. Data structures for representing graphs. Graph searches.</p>
+                        <p>Design, analysis, implementation and comparison of efficient data structures for common
+                            abstract data types. Priority
+                            queues: heaps and mergeable heaps. Dictionaries: balanced binary search trees, B-trees,
+                            hashing. Amortization: data structures
+                            for managing dynamic tables and disjoint sets. Data structures for representing graphs.
+                            Graph searches.</p>
                         <p><b>Exclusion:</b> CSC263H, CSC265H, (CSCC78H)</p>
-                        <p><b>Prerequisite:</b> CSCB36H or (CSCB38H) & [CGPA 2.75 or enrolment in a CSC subject POSt]</p>
+                        <p><b>Prerequisite:</b> CSCB36H or (CSCB38H) & [CGPA 2.75 or enrolment in a CSC subject POSt]
+                        </p>
                     </div>
                 </div>
             </section>
@@ -70,9 +79,9 @@
             <section>
                 <div class="course-card">
                     <header class="card-head">
-                    <h2>Instructor</h2>
+                        <h2>Instructor</h2>
                     </header>
-                
+
                     <div class="card-info">
                         <p><b>Dr. Anna Bretscher</b></p>
                         <p>Email: <a href="anna.bretscher@utoronto.ca">anna.bretscher@utoronto.ca</a></p>
@@ -84,9 +93,9 @@
             <section>
                 <div class="course-card">
                     <header class="card-head">
-                    <h2>Lecture Times and Links</h2>
+                        <h2>Lecture Times and Links</h2>
                     </header>
-                
+
                     <div class="card-info">
                         <p>Wednesdays 3:10-4:00 PM: <a href="https://utoronto.zoom.us/j/89553548645">Zoom Link</a></p>
                         <p>Thursdays 9:10-11:00 AM: <a href="https://utoronto.zoom.us/j/83378932991">Zoom Link</a></p>
@@ -97,9 +106,9 @@
             <section>
                 <div class="course-card">
                     <header class="card-head">
-                    <h2>Office Hours</h2>
+                        <h2>Office Hours</h2>
                     </header>
-                
+
                     <div class="card-info">
                         <p>Usually Mondays 11:00 AM-12:30 PM, and Friday 10:40-11:30 AM</p>
                         <p><i>Please see the calendar for weekly changes</i>></p>
@@ -112,10 +121,10 @@
 
     <!--footer-->
     <div class="footer">
-        <img src="../static/images/2.png" alt="some_text" id="icon"> 
-        
+        <img src="../static/images/2.png" alt="some_text" id="icon">
+
         <div id="text">
-            <p> 
+            <p>
                 <a href="https://www.utsc.utoronto.ca/cms/faculty" class="links">Faculty of Computer Science</a><br>
                 <i>Site design by Yuxin Chen, Johnson Lai, Seyon Kuganesan</i>
             <p>
@@ -123,4 +132,5 @@
     </div>
     <script src="../static/js/mobile.js"></script>
 </body>
+
 </html>
