@@ -3,19 +3,18 @@
 		letter-spacing: .5em;
 	}
 }
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 900px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .3em;
+	}
+
+	.intro {
+		margin-bottom: 0px;
 	}
 }
 
 /* Mobile - converts navbar to vertical when screen width is too small*/
-@media screen and (max-width: 780px) {	
-	.nav-bar {
-		background-color: red;
-		width: 70%;
-	}
-
+@media screen and (max-width: 700px) {	
 	.nav-bar #hidden-header {
 		letter-spacing: .2em;
 	}

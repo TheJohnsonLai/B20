@@ -1,5 +1,4 @@
 @charset "UTF-8";
-@import "mobile.css";
 @import "footer.css";
 
 * {
@@ -20,13 +19,12 @@ body {
 main {	
 	flex: 1;
 }
-
 /* Menu Button*/
 .permanent-option {
 	height: 100%;
 	float: left;
 	border-right-style: solid;
-	border-right-color: rgb(112, 112, 112);
+	border-right-color: rgb(82, 82, 82);
 	border-right-width: 1px;
 	color: rgb(255, 255, 255);
 }
@@ -34,7 +32,7 @@ main {
 .nav-bar #hidden-header {
 	display: none;
     background: rgb(2,0,36);
-	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(8,12,18,1) 8%, rgba(47,133,222,0.742734593837535) 100%);
+	background: linear-gradient(180deg, rgba(2,0,36,1) 0%, rgba(8,12,18,1) 8%, rgba(47, 132, 222, 0.514) 100%);
 	padding-left: 10%;
 	padding-right: 10%;
 	color: white;
@@ -46,7 +44,6 @@ main {
 #nav-menu {
 	display: block;
 }
-
 /* Highlights current page */
 .nav-bar a.active {
 	background: rgb(2,0,36);
@@ -103,13 +100,14 @@ main {
 }
 
 .intro {
-	color : #001277;
-	top: 500px;
+	display: inline-flex;
+	justify-content: center;
+	flex-direction: column;
+	color: #001277;
 	margin-top: 100px;
 	margin-left: auto;
     margin-right: auto;
-	height: 35px;
-	width: 100%;
+	width: 90%;
 	font-weight: bold;
 	font-size: x-large;
 }
