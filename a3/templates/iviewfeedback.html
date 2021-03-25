@@ -5,7 +5,9 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="../static/css/iviewfeedback.css" />
     <link rel="stylesheet" type="text/css" href="../static/css/iviewgrades.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/mobile.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -45,34 +47,35 @@
         &nbsp;
     </section>
 
-    <div class="icontent" id="iviewcontent">
-
-        <table class="itable">
-            <tr>
-                <th>What did they like about the professor?</th>
-                <th>Suggestions for the professor?</th>
-                <th>What did they like about the TA?</th>
-                <th>Suggestions for the TA?</th>
-            </tr>
-            {% for item in feedbackH %}
-            <tr>
-                <td>{{ item['FA'] }}</td>
-                <td>{{ item['FB'] }}</td>
-                <td>{{ item['FC'] }}</td>
-                <td>{{ item['FD'] }}</td>
-                <form name="feedback-form" id="fb-form" action="iviewfeedback.html" method="POST">
-                    <td id="hidden-td">
-                        <button id="trash-btn" type="submit" name="submission" value="delete"><i class="fa fa-trash-o"
-                                form="feedback-form"></i></button>
-                    </td>
-                    <input class="hidden-key" type="number" id="created-date" name="created-date"
-                        value="{{item['CREATED']}}">
-                </form>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
-
+    <main>
+        <div class="icontent" id="iviewcontent">
+            <table class="itable">
+                <tr>
+                    <th>What did they like about the professor?</th>
+                    <th>Suggestions for the professor?</th>
+                    <th>What did they like about the TA?</th>
+                    <th>Suggestions for the TA?</th>
+                </tr>
+                {% for item in feedbackH %}
+                <tr>
+                    <td>{{ item['FA'] }}</td>
+                    <td>{{ item['FB'] }}</td>
+                    <td>{{ item['FC'] }}</td>
+                    <td>{{ item['FD'] }}</td>
+                    <form name="feedback-form" id="fb-form" action="iviewfeedback.html" method="POST">
+                        <td id="hidden-td">
+                            <button id="trash-btn" type="submit" name="submission" value="delete"><i
+                                    class="fa fa-trash-o" form="feedback-form"></i></button>
+                        </td>
+                        <input class="hidden-key" type="number" id="created-date" name="created-date"
+                            value="{{item['CREATED']}}">
+                    </form>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </main>
+    
     <!--footer-->
     <div class="footer">
         <img src="../static/images/2.png" alt="some_text" id="icon">

@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/iviewgrades.css" />
+    <link rel="stylesheet" type="text/css" href="../static/css/mobile.css" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <title>CSCB63: Instructor Panel - All Grades</title>
@@ -44,69 +45,71 @@
         &nbsp;
     </section>
 
-    <div class="icontent" id="iviewcontent">
-        <div class="ioption" id="edit-mark-form">
-            <form name="editform" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
-                <table class="iview-grades-table">
-                    <tr>
-                        <td>
-                            <select class="top-option" id="list-utorid" name="list-utorid" placeholder="1">
-                                <option value="--">--</option>
-                                {% for item in ulist %}
-                                <option value="{{item['UTORID']}}">{{item['UTORID']}}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td>
-                            <select class="top-option" id="list-examname" name="list-examname" placeholder="A1">
-                                <option value="--">--</option>
-                                {% for item in elist %}
-                                <option value="{{item}}">{{item}}</option>
-                                {% endfor %}
-                            </select>
-                        </td>
-                        <td>
-                            <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00"
-                                step=0.01>
-                        </td>
-                    </tr>
-                </table>
-                <input class="top-option" type="submit" name="submission" class="GradeBackend" value="Submit marks">
-            </form>
+    <main>
+        <div class="icontent" id="iviewcontent">
+            <div class="ioption" id="edit-mark-form">
+                <form name="editform" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
+                    <table class="iview-grades-table">
+                        <tr>
+                            <td>
+                                <select class="top-option" id="list-utorid" name="list-utorid" placeholder="1">
+                                    <option value="--">--</option>
+                                    {% for item in ulist %}
+                                    <option value="{{item['UTORID']}}">{{item['UTORID']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="top-option" id="list-examname" name="list-examname" placeholder="A1">
+                                    <option value="--">--</option>
+                                    {% for item in elist %}
+                                    <option value="{{item}}">{{item}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00"
+                                    step=0.01>
+                            </td>
+                        </tr>
+                    </table>
+                    <input class="top-option" type="submit" name="submission" class="GradeBackend" value="Submit marks">
+                </form>
+            </div>
+            <hr>
+
+            <table class="itable">
+                <tr>
+                    <th>UTOR ID</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Assignment 1</th>
+                    <th>Assignment 2</th>
+                    <th>Assignment 3</th>
+                    <th>Test 1</th>
+                    <th>Test 2</th>
+                    <th>Test 3</th>
+                    <th>Final Exam</th>
+                </tr>
+                {% for item in studentH %}
+                <tr>
+                    <td>{{ item['UTORID'] }}</td>
+                    <td>{{ item['FNAME'] }}</td>
+                    <td>{{ item['LNAME'] }}</td>
+                    <td>{{ item['A1'] }}</td>
+                    <td>{{ item['A2'] }}</td>
+                    <td>{{ item['A3'] }}</td>
+                    <td>{{ item['T1'] }}</td>
+                    <td>{{ item['T2'] }}</td>
+                    <td>{{ item['T3'] }}</td>
+                    <td>{{ item['FINAL'] }}</td>
+                </tr>
+                </form>
+                {% endfor %}
+            </table>
         </div>
-        <hr>
-
-        <table class="itable">
-            <tr>
-                <th>UTOR ID</th>
-                <th>First Name</th>
-                <th>Last Name</th>
-                <th>Assignment 1</th>
-                <th>Assignment 2</th>
-                <th>Assignment 3</th>
-                <th>Test 1</th>
-                <th>Test 2</th>
-                <th>Test 3</th>
-                <th>Final Exam</th>
-            </tr>
-            {% for item in studentH %}
-            <tr>
-                <td>{{ item['UTORID'] }}</td>
-                <td>{{ item['FNAME'] }}</td>
-                <td>{{ item['LNAME'] }}</td>
-                <td>{{ item['A1'] }}</td>
-                <td>{{ item['A2'] }}</td>
-                <td>{{ item['A3'] }}</td>
-                <td>{{ item['T1'] }}</td>
-                <td>{{ item['T2'] }}</td>
-                <td>{{ item['T3'] }}</td>
-                <td>{{ item['FINAL'] }}</td>
-            </tr>
-            </form>
-            {% endfor %}
-        </table>
-    </div>
-
+    </main>
+    
     <!--footer-->
     <div class="footer">
         <img src="../static/images/2.png" alt="some_text" id="icon">

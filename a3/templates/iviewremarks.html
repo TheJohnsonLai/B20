@@ -6,74 +6,76 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="../static/css/iviewgrades.css" />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap"/>
+    <link rel="stylesheet" type="text/css" href="../static/css/mobile.css" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@200&display=swap" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>CSCB63: Instructor Panel - Remark Requests</title>
 </head>
 
 <body>
-    <header>
-
-        <div class="nav-bar">
-            <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
-                    class="fas fa-bars"></i></i></a>
-            <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
-            <div id="hidden-header">
-                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+    <main>
+        <header>
+            <div class="nav-bar">
+                <a href="javascript:void(0);" id="h-menu" class="permanent-option" onclick="flipMenu()"><i
+                        class="fas fa-bars"></i></i></a>
+                <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
+                <div id="hidden-header">
+                    <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+                </div>
+                <div id="nav-menu">
+                    <a href="index.html">Home</a>
+                    <a href="calendar.html">Calendar</a>
+                    <a href="https://piazza.com/class/kju7e2uwa8p3sf.html">Discussion Board</a>
+                    <a href="lectures.html">Lectures</a>
+                    <a href="tutorials.html">Labs</a>
+                    <a href="assignments.html">Assignments</a>
+                    <a href="tests.html">Tests</a>
+                    <a href="https://markus.utsc.utoronto.ca/cscb63w21/">MarkUs</a>
+                    <a href="team.html">Course Team</a>
+                    <a href="links.html">Links</a>
+                    <a class="active" href="instructorpanel.html">Instructor Panel</a>
+                </div>
             </div>
-            <div id="nav-menu">
-                <a href="index.html">Home</a>
-                <a href="calendar.html">Calendar</a>
-                <a href="https://piazza.com/class/kju7e2uwa8p3sf.html">Discussion Board</a>
-                <a href="lectures.html">Lectures</a>
-                <a href="tutorials.html">Labs</a>
-                <a href="assignments.html">Assignments</a>
-                <a href="tests.html">Tests</a>
-                <a href="https://markus.utsc.utoronto.ca/cscb63w21/">MarkUs</a>
-                <a href="team.html">Course Team</a>
-                <a href="links.html">Links</a>
-                <a class="active" href="instructorpanel.html">Instructor Panel</a>
+
+        </header>
+
+        <section>
+            &nbsp;
+            <div class="intro">
+                <h1><b>Remark Requests</b></h1>
             </div>
+            &nbsp;
+        </section>
+
+        <div class="icontent" id="iviewcontent">
+
+            <table class="itable">
+                <tr>
+                    <th>UTOR ID</th>
+                    <th>Name</th>
+                    <th>Article</th>
+                    <th>Request Reason</th>
+                </tr>
+                {% for item in remarksH %}
+                <tr>
+                    <td>{{ item['UTORID'] }}</td>
+                    <td>{{ item['FNAME'] }} {{ item['LNAME'] }}</td>
+                    <td>{{ item['EXAMNAME'] }}</td>
+                    <td>{{ item['COMMENT'] }}</td>
+                    <form name="rm-form" id="rm-form" action="iviewremarks.html" method="POST">
+                        <td id="hidden-td">
+                            <button id="trash-btn" type="submit" name="submission" value="delete"><i
+                                    class="fa fa-trash-o" form="feedback-form"></i></button>
+                        </td>
+                        <input class="hidden-key" type="number" id="created-date" name="created-date"
+                            value="{{item['CREATED']}}">
+                    </form>
+                </tr>
+                {% endfor %}
+            </table>
         </div>
-
-    </header>
-
-    <section>
-        &nbsp;
-        <div class="intro">
-            <h1><b>Remark Requests</b></h1>
-        </div>
-        &nbsp;
-    </section>
-
-    <div class="icontent" id="iviewcontent">
-
-        <table class="itable">
-            <tr>
-                <th>UTOR ID</th>
-                <th>Name</th>
-                <th>Article</th>
-                <th>Request Reason</th>
-            </tr>
-            {% for item in remarksH %}
-            <tr>
-                <td>{{ item['UTORID'] }}</td>
-                <td>{{ item['FNAME'] }} {{ item['LNAME'] }}</td>
-                <td>{{ item['EXAMNAME'] }}</td>
-                <td>{{ item['COMMENT'] }}</td>
-                <form name="rm-form" id="rm-form" action="iviewremarks.html" method="POST">
-                    <td id="hidden-td">
-                        <button id="trash-btn" type="submit" name="submission" value="delete"><i class="fa fa-trash-o"
-                                form="feedback-form"></i></button>
-                    </td>
-                    <input class="hidden-key" type="number" id="created-date" name="created-date"
-                        value="{{item['CREATED']}}">
-                </form>
-            </tr>
-            {% endfor %}
-        </table>
-    </div>
+    </main>
 
     <!--footer-->
     <div class="footer">
