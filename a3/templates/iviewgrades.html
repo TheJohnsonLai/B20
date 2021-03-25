@@ -47,37 +47,6 @@
 
     <main>
         <div class="icontent" id="iviewcontent">
-            <div class="ioption" id="edit-mark-form">
-                <form name="editform" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
-                    <table class="iview-grades-table">
-                        <tr>
-                            <td>
-                                <select class="top-option" id="list-utorid" name="list-utorid" placeholder="1">
-                                    <option value="--">--</option>
-                                    {% for item in ulist %}
-                                    <option value="{{item['UTORID']}}">{{item['UTORID']}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td>
-                                <select class="top-option" id="list-examname" name="list-examname" placeholder="A1">
-                                    <option value="--">--</option>
-                                    {% for item in elist %}
-                                    <option value="{{item}}">{{item}}</option>
-                                    {% endfor %}
-                                </select>
-                            </td>
-                            <td>
-                                <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00"
-                                    step=0.01>
-                            </td>
-                        </tr>
-                    </table>
-                    <input class="top-option" type="submit" name="submission" class="GradeBackend" value="Submit marks">
-                </form>
-            </div>
-            <hr>
-
             <table class="itable">
                 <tr>
                     <th>UTOR ID</th>
@@ -108,8 +77,41 @@
                 {% endfor %}
             </table>
         </div>
+        
+        <div class="icontent" id="iviewedit">
+            <div class="ioption" id="edit-mark-form">
+                <form name="editform" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
+                    <table class="iview-grades-table">
+                        <tr>
+                            <td>
+                                <select class="top-option" id="list-utorid" name="list-utorid" placeholder="1">
+                                    <option value="--">--</option>
+                                    {% for item in ulist %}
+                                    <option value="{{item['UTORID']}}">{{item['UTORID']}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <select class="top-option" id="list-examname" name="list-examname" placeholder="A1">
+                                    <option value="--">--</option>
+                                    {% for item in elist %}
+                                    <option value="{{item}}">{{item}}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                            <td>
+                                <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00"
+                                    step=0.01>
+                            </td>
+                        </tr>
+                    </table>
+                    <input class="top-option" type="submit" name="submission" id="GradeBackend" value="Submit marks">
+                </form>
+            </div>
+        </div>
+
     </main>
-    
+
     <!--footer-->
     <div class="footer">
         <img src="../static/images/2.png" alt="some_text" id="icon">
