@@ -1,65 +1,69 @@
+@media screen and (min-width: 1500px) {
+	.footer {
+		width: 1500px;
+	}
+	.footer #text {
+		font-size: 19px;
+	}
+	.footer .links:hover {
+		font-size: 19px;
+	}
+}
+
 @media screen and (max-width: 1100px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .5em;
 	}
-
 	.parent {
 		grid-gap: 4px;
 		grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
 		font-size: 16px;
 	}
 }
+
 @media screen and (max-width: 900px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .3em;
 	}
-
 	.intro {
 		margin-bottom: 0px;
 	}
-
 	.parent {
 		grid-gap: 3px;
 		grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
 		font-size: 14px;
 	}
-
-	.parent > div {
+	.parent>div {
 		padding: 3px;
 		font-size: small;
 	}
 }
 
 /* Mobile - converts navbar to vertical when screen width is too small*/
-@media screen and (max-width: 700px) {	
+
+@media screen and (max-width: 700px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .2em;
 	}
-
 	.nav-bar a.expand-menu-button {
 		display: inline-block;
 		border-bottom-style: solid;
 		border-bottom-width: 1px;
 		border-bottom-color: rgb(112, 112, 112);
-  	}
-
+	}
 	#nav-menu {
 		display: none;
 	}
-
 	.nav-bar a {
 		width: 100%;
 	}
-	
 	.parent {
 		grid-gap: 1px;
 		grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
 		font-size: 12px;
 	}
-
-	.parent > div {
+	.parent>div {
 		padding: 4px;
 		font-size: small;
 	}
 }
-

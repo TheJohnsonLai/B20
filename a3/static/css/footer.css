@@ -5,13 +5,13 @@
     bottom: 0;
     width: 100%;
 
-    clear:both;
-    margin-left: -1.7vw; /*fill entire width*/
-    margin-right: -1.7vw;
+    clear: both;
+    /* Removed gaps on the right side */
+    margin: auto;
     margin-bottom: -1.8vw;
    
-    /*color*/
-    background-color:rgb(220, 225, 233);
+    /*color matches background */
+	background: rgb(220, 229, 238);
     z-index: 0;
 }
 
