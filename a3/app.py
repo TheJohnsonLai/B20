@@ -66,7 +66,7 @@ def login():
         if request.form['username'] != 'anna.b' or request.form['password'] != '123': #placeholder credentials (will integrate with database)
             error = "Username or password incorrect."
         else:
-            return redirect(url_for('root'))
+            return redirect(url_for('./index.html'))
     return render_template('login.html', error=error)
 
 
