@@ -2,6 +2,12 @@
 	.nav-bar #hidden-header {
 		letter-spacing: .5em;
 	}
+
+	.parent {
+		grid-gap: 4px;
+		grid-template-columns: repeat(auto-fit, minmax(44px, 1fr));
+		font-size: 16px;
+	}
 }
 @media screen and (max-width: 900px) {
 	.nav-bar #hidden-header {
@@ -10,6 +16,17 @@
 
 	.intro {
 		margin-bottom: 0px;
+	}
+
+	.parent {
+		grid-gap: 3px;
+		grid-template-columns: repeat(auto-fit, minmax(40px, 1fr));
+		font-size: 14px;
+	}
+
+	.parent > div {
+		padding: 3px;
+		font-size: small;
 	}
 }
 
@@ -33,4 +50,16 @@
 	.nav-bar a {
 		width: 100%;
 	}
+	
+	.parent {
+		grid-gap: 1px;
+		grid-template-columns: repeat(auto-fit, minmax(30px, 1fr));
+		font-size: 12px;
+	}
+
+	.parent > div {
+		padding: 4px;
+		font-size: small;
+	}
 }
+
