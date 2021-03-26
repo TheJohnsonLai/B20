@@ -72,6 +72,10 @@ def login():
 
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
+    #check the status of user
+    if session['user_type'] != "student": 
+        return redirect(redirect_url())
+
     db = get_db()
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
@@ -87,6 +91,7 @@ def student():
         comment = request.form['explain']
         created = int(time.time())
         examname = request.form['remark_area']
+        #update database
         db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[1, examname, comment, created])
         db.commit()
 
@@ -96,6 +101,7 @@ def student():
         fc = request.form['FC']
         fd = request.form['FD']
         created = int(time.time())
+        #update database
         db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[section, fa, fb, fc, fd, created])
         db.commit()
     
@@ -181,26 +187,6 @@ def instructor_view_remarks():
     db.close()
 
     return render_template('iviewremarks.html', remarksH=remarks)
-
-@app.route('/feedback.html', methods=['GET', 'POST'])
-def feedback_page():    
-    db = get_db()
-    if (request.method == 'POST'):    
-        instructor_id = request.form['instructor_id'] 
-        c1 = request.form['comment1'] 
-        c2 = request.form['comment2'] 
-        c3 = request.form['comment3'] 
-        c4 = request.form['comment4']
-        previous_max_time = query_db('select MAX(CREATED) FROM FEEDBACK', one=True)['MAX(CREATED)'] + 1
-        sql = """INSERT INTO FEEDBACK VALUES ({},{},{},{},{},{})""".format(instructor_id, c1, c2, c3, c4,previous_max_time)
-        cur = db.cursor()
-        cur.execute(sql)
-        db.commit
- 
-    ids = query_db('select * from INSTRUCTOR')
-    db.close()
-
-    return render_template('feedback.html', ilist=ids)
 
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
