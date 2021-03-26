@@ -122,14 +122,17 @@ def instructor_view_grades():
             utorid = request.form["list-utorid"]
             # Table Column names cannot be accessed normally
             sql = """UPDATE GRADES SET {} = {} WHERE UTORID = '{}'""".format(examname, grade, utorid)
-            cur = db.cursor()
-            cur.execute(sql)
+            db.execute(sql)
             db.commit
         except:
             print ("Error with SQL statement. (I-Grades)")
-    
-    students = query_db('select * from STUDENT NATURAL JOIN GRADES')  
-    ids = query_db('select UTORID from STUDENT')
+
+    sql = """select * from STUDENT NATURAL JOIN GRADES where section = 
+            (select section from instructor i natural join user u where u.username = '{}')""".format(session['username'])
+    students = query_db(sql)  
+    sql = """select UTORID from STUDENT where section = 
+            (select section from instructor i natural join user u where u.username = '{}')""".format(session['username'])
+    ids = query_db(sql)
     db.close()
             
     return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=get_exam_names())
@@ -140,23 +143,22 @@ def instructor_view_feedback():
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
 
-    session['username'] = "instructor1" # To be changed later, when authentication is added.
-
     db = get_db()
     if (request.method == 'POST'):
         try:
             unixtime = request.form['created-date']
             sql = """DELETE FROM FEEDBACK WHERE CREATED = {}""".format(unixtime)
-            cur = db.cursor()
-            cur.execute(sql)
+            db.execute(sql)
             db.commit
         except:
             print ("Error with SQL statement. (I-Feedback)")
 
     feedback = []
+    sql = """select DISTINCT FA, FB, FC, FD, CREATED from FEEDBACK NATURAL JOIN USER WHERE SECTION = 
+            (select section from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
     # View feedback that is directed towards this user (instructor)
-    for item in query_db('select FA, FB, FC, FD, CREATED from FEEDBACK NATURAL JOIN USER WHERE USERNAME LIKE ?', [session['username']]):
-        feedback.append(item)
+    feedback = query_db(sql)
+    print(feedback)
     db.close()
 
     return render_template('iviewfeedback.html', feedbackH=feedback)
@@ -168,19 +170,21 @@ def instructor_view_remarks():
         return redirect(redirect_url())
 
     db=get_db()
+
     if (request.method == 'POST'):
         try:
             unixtime = request.form['created-date']
             sql = """DELETE FROM REMARKS WHERE CREATED = {}""".format(unixtime)
-            cur = db.cursor()
-            cur.execute(sql)
+            db.execute(sql)
             db.commit
         except:
             print ("Error with SQL statement. (Remarks)")
 
     remarks = []
     # View remark requests.
-    for item in query_db('select UTORID, FNAME, LNAME, EXAMNAME, COMMENT, CREATED FROM REMARKS NATURAL JOIN STUDENT'):
+    sql = """select UTORID, FNAME, LNAME, EXAMNAME, COMMENT, CREATED FROM REMARKS NATURAL JOIN STUDENT where section = 
+            (select section from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
+    for item in query_db(sql):
         remarks.append(item)
     db.close()
 
@@ -220,6 +224,7 @@ def root():
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
+    # Debugging
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
     return render_template('instructorpanel.html', usertype=session['user_type'])
@@ -243,7 +248,8 @@ def lectures_page():
 @app.route('/links.html')
 def links_page():
     # Testing - Applies Instructor View (Remove later)
-    session['user_type'] = "instructor"
+    session['username'] = 'instructor1'
+    session['user_type'] = 'instructor'
     return render_template('links.html', user_type=session['user_type'])
 
 @app.route('/team.html')
