@@ -72,6 +72,10 @@ def login():
 
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
+    #check the status of user
+    if session['user_type'] != "student": 
+        return redirect(redirect_url())
+
     db = get_db()
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
@@ -80,16 +84,14 @@ def student():
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
-    
-    # If no such student to be implemented....
+    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
 
-    # Inside DB are some tables.
-    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)   
-
-    if request.method == 'POST' and request.form['formName'] == "remark":
+    # Student grade can be found.
+    if request.method == 'POST' and request.form['formName'] == "remark": #remark submitted
         comment = request.form['explain']
-        created = time.time()
+        created = int(time.time())
         examname = request.form['remark_area']
+        #update database
         db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[1, examname, comment, created])
         db.commit()
 
@@ -98,13 +100,13 @@ def student():
         fb = request.form['FB']
         fc = request.form['FC']
         fd = request.form['FD']
-        created = time.time()
+        created = int(time.time())
+        #update database
         db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[section, fa, fb, fc, fd, created])
         db.commit()
-        
-        
+    
     db.close()
-    return render_template('student.html', grade=student_grades, name=name)
+    return render_template('student.html', grade=student_grades, name=name, section = section)
 
 # Instructor View - All Grades
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
@@ -144,6 +146,7 @@ def instructor_view_feedback():
         return redirect(redirect_url())
 
     db = get_db()
+    
     if (request.method == 'POST'):
         try:
             unixtime = request.form['created-date']
@@ -158,7 +161,6 @@ def instructor_view_feedback():
             (select section from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
     # View feedback that is directed towards this user (instructor)
     feedback = query_db(sql)
-    print(feedback)
     db.close()
 
     return render_template('iviewfeedback.html', feedbackH=feedback)
@@ -190,26 +192,6 @@ def instructor_view_remarks():
 
     return render_template('iviewremarks.html', remarksH=remarks)
 
-@app.route('/feedback.html', methods=['GET', 'POST'])
-def feedback_page():    
-    db = get_db()
-    if (request.method == 'POST'):    
-        instructor_id = request.form['instructor_id'] 
-        c1 = request.form['comment1'] 
-        c2 = request.form['comment2'] 
-        c3 = request.form['comment3'] 
-        c4 = request.form['comment4']
-        previous_max_time = query_db('select MAX(CREATED) FROM FEEDBACK', one=True)['MAX(CREATED)'] + 1
-        sql = """INSERT INTO FEEDBACK VALUES ({},{},{},{},{},{})""".format(instructor_id, c1, c2, c3, c4,previous_max_time)
-        cur = db.cursor()
-        cur.execute(sql)
-        db.commit
- 
-    ids = query_db('select * from INSTRUCTOR')
-    db.close()
-
-    return render_template('feedback.html', ilist=ids)
-
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
 def redirect_url(default='/'):
@@ -224,7 +206,6 @@ def root():
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    # Debugging
     if session['user_type'] != "instructor":
         return redirect(redirect_url())
     return render_template('instructorpanel.html', usertype=session['user_type'])
@@ -248,8 +229,8 @@ def lectures_page():
 @app.route('/links.html')
 def links_page():
     # Testing - Applies Instructor View (Remove later)
-    session['username'] = 'instructor1'
-    session['user_type'] = 'instructor'
+    session['user_type'] = "instructor"
+    session['username'] = "instructor1"
     return render_template('links.html', user_type=session['user_type'])
 
 @app.route('/team.html')
