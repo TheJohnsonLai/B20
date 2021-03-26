@@ -33,14 +33,7 @@ def make_dicts(cursor, row):
 # ---------------------------------------------- Flask ------------------------------------------------
 
 app = Flask(__name__)
-
-# ---------------------------------------------- Authentication ---------------------------------------
-
 app.secret_key = "thesecretkey"
-# This stuff is yet to be decided - how to implement authentication. Cannot use SQLalchemy.
-# session['VARNAME'] = VALUE
-# session['user_type'] = instructor
-# session['username'] = instructor1
 
 # the function close_connection is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
@@ -51,7 +44,7 @@ def close_connection(exception):
         # Close the connection
         db.close()
 
-# ---------------------------------------------- Webpages ---------------------------------------------
+# ---------------------------------------------- Authentication ---------------------------------------
 
 # route for login webpage
 @app.route('/login', methods=['GET', 'POST'])
@@ -67,8 +60,21 @@ def login():
             error = "Username or password incorrect."
         else:
             return redirect(url_for('./index.html'))
-    return render_template('login.html', error=error)
+    return render_template('login.html', error=error)  
 
+# Logout route redirects to Login page
+@app.route('/logout')
+def logout_redirect():
+    session.pop('username', None)
+    session['user_type'] = 'guest'
+    return redirect(url_for('login'))
+
+# Bad links redirect to the login page
+@app.errorhandler(404)
+def page_not_found(e):
+    return redirect(url_for('login')), 404
+
+# ---------------------------------------------- Webpages ---------------------------------------------
 
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
@@ -122,7 +128,7 @@ def instructor_view_grades():
             grade = request.form['new-grade']
             examname = request.form['list-examname']
             utorid = request.form["list-utorid"]
-            # Table Column names cannot be accessed normally
+            # Table Column names cannot be accessed normally, format within triple quotes
             sql = """UPDATE GRADES SET {} = {} WHERE UTORID = '{}'""".format(examname, grade, utorid)
             db.execute(sql)
             db.commit
@@ -139,7 +145,7 @@ def instructor_view_grades():
             
     return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=get_exam_names())
 
-# Instructor views feedback, removes feedback
+# Instructor View - Feedback, can remove feedback
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
     if session['user_type'] != "instructor":
@@ -159,13 +165,13 @@ def instructor_view_feedback():
     feedback = []
     sql = """select DISTINCT FA, FB, FC, FD, CREATED from FEEDBACK NATURAL JOIN USER WHERE SECTION = 
             (select section from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
-    # View feedback that is directed towards this user (instructor)
+    # View feedback that is directed towards this course section
     feedback = query_db(sql)
     db.close()
 
     return render_template('iviewfeedback.html', feedbackH=feedback)
 
-# Instructor views remark requests, removes remark requests
+# Instructor View - Remark Requests, can remove remark requests
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
     if session['user_type'] != "instructor": 
@@ -194,37 +200,38 @@ def instructor_view_remarks():
 
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
-def redirect_url(default='/'):
+def redirect_url(default='root'):
     return request.args.get('next') or request.referrer or url_for(default)
     # Use >> return redirect(redirect_url()) << In function call
 
 # Landing page. What will it be?
 @app.route('/')
 def root():
-    return render_template('login.html')  # Change to landing html!
+    return render_template('index.html')  # Change to landing html!
 
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
     if session['user_type'] != "instructor":
+        print("Only instructors can access this page!" + redirect_url())
         return redirect(redirect_url())
-    return render_template('instructorpanel.html', usertype=session['user_type'])
+    return render_template('instructorpanel.html', user_type=session['user_type'])
 
 @app.route('/assignments.html')
 def assignments_page():
-    return render_template('assignments.html', usertype=session['user_type'])
+    return render_template('assignments.html', user_type=session['user_type'])
 
 @app.route('/calendar.html')
 def calendar_page():
-    return render_template('calendar.html', usertype=session['user_type'])
+    return render_template('calendar.html', user_type=session['user_type'])
 
 @app.route('/index.html')
 def index_page():
-    return render_template('index.html', usertype=session['user_type'])
+    return render_template('index.html', user_type=session['user_type'])
 
 @app.route('/lectures.html')
 def lectures_page():
-    return render_template('lectures.html', usertype=session['user_type'])
+    return render_template('lectures.html', user_type=session['user_type'])
 
 @app.route('/links.html')
 def links_page():
@@ -237,32 +244,21 @@ def links_page():
 def team_page():
     # Testing - Applies Student View (Remove later)
     session['user_type'] = "student"
-    return render_template('team.html', usertype=session['user_type'])
+    return render_template('team.html', user_type=session['user_type'])
 
 @app.route('/tests.html')
 def tests_page():
-    return render_template('tests.html', usertype=session['user_type'])
+    return render_template('tests.html', user_type=session['user_type'])
 
 @app.route('/tutorials.html')
 def tutorials_page():
-    return render_template('tutorials.html', usertype=session['user_type'])
-
-@app.route('/logout')
-def logout_redirect():
-    session['username'] = ''
-    session['user_type'] = 'guest'
-    return render_template('login.html')
-
-# Bad links redirect to the login page
-@app.errorhandler(404)
-def page_not_found(e):
-    return render_template('login.html'), 404
+    return render_template('tutorials.html', user_type=session['user_type'])
 
 # Runs after a request, clears cache (Development purposes)
 @app.after_request
 def add_header(response):
     # Sustains cache (static files) for 300 seconds
-    response.headers['Cache-Control'] = 'public, max-age=300'
+    response.headers['Cache-Control'] = 'public, max-age=600'
     return response
 
 # -------------------------------------------- Helper Functions --------------------------

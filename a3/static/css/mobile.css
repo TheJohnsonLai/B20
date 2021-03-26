@@ -1,3 +1,4 @@
+/* When the browser is too large */
 @media screen and (min-width: 1500px) {
 	.footer {
 		width: 1500px;
@@ -10,6 +11,7 @@
 	}
 }
 
+/* Laptop View */
 @media screen and (max-width: 1100px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .5em;
@@ -21,7 +23,8 @@
 	}
 }
 
-@media screen and (max-width: 900px) {
+/* Tablet view */
+@media screen and (max-width: 900px) {	
 	.nav-bar #hidden-header {
 		letter-spacing: .3em;
 	}
@@ -39,8 +42,7 @@
 	}
 }
 
-/* Mobile - converts navbar to vertical when screen width is too small*/
-
+/* Mobile View */
 @media screen and (max-width: 700px) {
 	.nav-bar #hidden-header {
 		letter-spacing: .2em;
@@ -56,6 +58,9 @@
 	}
 	.nav-bar a {
 		width: 100%;
+	}	
+	.nav-bar a.permanent-option{
+		width: 50%;
 	}
 	.parent {
 		grid-gap: 1px;
