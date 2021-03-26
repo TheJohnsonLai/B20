@@ -54,6 +54,7 @@
                 <td>{{grade['T3']}}</td>
                 <td>{{grade['FINAL']}}</td>
             </tr>
+            {% if grade != None %}
             <tr>
                 <div class="remark_button">
                     <td><button id="Assignment 1">Request Remark</button></td>
@@ -65,6 +66,7 @@
                     <td><button id="Final Exam">Request Remark</button></td>
                 </div>
             </tr>
+            {% endif %}
         </table>
 
 
@@ -82,7 +84,7 @@
             </div>
         </div>
         
-        
+        {% if section != None %}
         <h2>Anonymous Feedback</h2>
         <hr>
         <p>This is an opportunity to provide honest and confidential feedback about what is important to 
@@ -108,6 +110,7 @@
                 <center><input type="submit" value="Submit"></center>
               </form>
         </div>
+        {% endif %}
     </div>
 
 

@@ -80,15 +80,12 @@ def student():
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
-    
-    # If no such student to be implemented....
+    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
 
-    # Inside DB are some tables.
-    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)   
-
-    if request.method == 'POST' and request.form['formName'] == "remark":
+    # Student grade can be found.
+    if request.method == 'POST' and request.form['formName'] == "remark": #remark submitted
         comment = request.form['explain']
-        created = time.time()
+        created = int(time.time())
         examname = request.form['remark_area']
         db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[1, examname, comment, created])
         db.commit()
@@ -98,13 +95,12 @@ def student():
         fb = request.form['FB']
         fc = request.form['FC']
         fd = request.form['FD']
-        created = time.time()
+        created = int(time.time())
         db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[section, fa, fb, fc, fd, created])
         db.commit()
-        
-        
+    
     db.close()
-    return render_template('student.html', grade=student_grades, name=name)
+    return render_template('student.html', grade=student_grades, name=name, section = section)
 
 # Instructor View - All Grades
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
