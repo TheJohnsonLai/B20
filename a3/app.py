@@ -1,5 +1,5 @@
 # Required imports
-import sqlite3
+import sqlite3, time
 # g is used for database, not all will be used
 from flask import Flask, render_template, request, g, redirect, session, url_for, abort
 
@@ -70,8 +70,8 @@ def login():
     return render_template('login.html', error=error)
 
 
-@app.route('/sviewgrades.html', methods=['GET', 'POST'])
-def student_view_grades():
+@app.route('/student.html', methods=['GET', 'POST'])
+def student():
     db = get_db()
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
@@ -79,20 +79,32 @@ def student_view_grades():
     utorid = 1
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
+    section = student_name['SECTION']
+    
     # If no such student to be implemented....
 
     # Inside DB are some tables.
-    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
+    student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)   
 
-    if request.method == 'POST':
-        db = get_db()
+    if request.method == 'POST' and request.form['formName'] == "remark":
         comment = request.form['explain']
+        created = time.time()
         examname = request.form['remark_area']
-        db.execute("INSERT INTO REMARKS VALUES (?, ?, ?)",[1, examname, comment])
+        db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[1, examname, comment, created])
         db.commit()
-    
+
+    elif request.method == 'POST' and request.form['formName'] == "feedback": #feedback submitted
+        fa = request.form['FA']
+        fb = request.form['FB']
+        fc = request.form['FC']
+        fd = request.form['FD']
+        created = time.time()
+        db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[section, fa, fb, fc, fd, created])
+        db.commit()
+        
+        
     db.close()
-    return render_template('sviewgrades.html', grade=student_grades, name=name)
+    return render_template('student.html', grade=student_grades, name=name)
 
 # Instructor View - All Grades
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])

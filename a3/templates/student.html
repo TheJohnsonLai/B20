@@ -24,7 +24,7 @@
             <a href="team.html">Course Team</a>
             <a href="links.html">Links</a>
             {% if user_type == "student" %}
-            <a href="sviewgrades.html">Grade</a>
+            <a href="student.html">Student Panel</a>
             {% endif %}
         </div>
     </header>
@@ -55,13 +55,15 @@
                 <td>{{grade['FINAL']}}</td>
             </tr>
             <tr>
-                <td><button id="Assignment 1">Request Remark</button></td>
-                <td><button id="Assignment 2">Request Remark</button></td>
-                <td><button id="Assignment 3">Request Remark</button></td>
-                <td><button id="Test 1">Request Remark</button></td>
-                <td><button id="Test 2">Request Remark</button></td>
-                <td><button id="Test 3">Request Remark</button></td>
-                <td><button id="Final Exam">Request Remark</button></td>
+                <div class="remark_button">
+                    <td><button id="Assignment 1">Request Remark</button></td>
+                    <td><button id="Assignment 2">Request Remark</button></td>
+                    <td><button id="Assignment 3">Request Remark</button></td>
+                    <td><button id="Test 1">Request Remark</button></td>
+                    <td><button id="Test 2">Request Remark</button></td>
+                    <td><button id="Test 3">Request Remark</button></td>
+                    <td><button id="Final Exam">Request Remark</button></td>
+                </div>
             </tr>
         </table>
 
@@ -71,16 +73,40 @@
               <span id="close_box" class="close">&times;</span>
               <p id="title">REQUEST FOR REMARK A1</p>
               <hr>
-              <form action="sviewgrades.html" method="POST" id="remark_request">
+              <form action="student.html" method="POST" id="remark_request">
                 <input id="remark_area" type="text" name="remark_area">
                 <textarea id="explain" name="explain" rows="10" placeholder="Explain why you ask for a remark..."></textarea>
+                <input type="hidden" name="formName" value="remark">
                 <center><input type="submit" value="Submit" id="remark_submit" ></center>
               </form>
             </div>
         </div>
+        
+        
+        <h2>Anonymous Feedback</h2>
+        <hr>
+        <p>This is an opportunity to provide honest and confidential feedback about what is important to 
+            you, both what you feel is working well in this class and what you feel can be 
+            improved. Results of the survey will be used in all areas of CSCB63 to better understand 
+            our students' experiences and opinions. We want to hear what you have to say and 
+            then act on your behalf to improve our work. </p>
+        <div id="feedback_box">
+            <form action="student.html" method="POST">
+                <label for="FA">What do you like about the instructor teaching?</label>
+                <textarea name="FA" rows="5" class="feedback"></textarea>
+            
+                <label for="FB">What do you recommend the instructor to do to improve their teaching?</label>
+                <textarea name="FB" rows="5" class="feedback"></textarea>
+            
+                <label for="FC">What do you like about the tutorials?</label>
+                <textarea name="FC" rows="5" class="feedback"></textarea>
 
-        <div id="my_request_box" class="box">
-
+                <label for="FD">What do you recommend the TAs do to improve their tutorials?</label>
+                <textarea name="FD" rows="5" class="feedback"></textarea>
+                
+                <input type="hidden" name="formName" value="feedback">
+                <center><input type="submit" value="Submit"></center>
+              </form>
         </div>
     </div>
 

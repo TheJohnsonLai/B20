@@ -24,13 +24,13 @@
 }
 
 .content {
-    margin-top:5vw;
-    margin-bottom:5vw;
+    margin: 5vw;
 }
 
 .content .grades{
     overflow: hidden;
     border-collapse: collapse;
+    margin-bottom: 5vw;
 }
 .grades th, .grades td{
   border: 1px solid #ddd;
@@ -49,7 +49,7 @@ button{
   background-color: rgb(19, 40, 85);
   border: none;
   color: white;
-  padding: 6px 12px;
+  padding: 6px 5.5px;
   text-align: center;
   border-radius: 4px;
 }
@@ -124,4 +124,14 @@ input[type=submit]:hover {
 
 input[type=text]{
   display: none;
+}
+
+h2{
+  margin-bottom: 0px;
+}
+
+#feedback_box {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 }
