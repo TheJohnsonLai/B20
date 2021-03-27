@@ -1,0 +1,84 @@
+@import "styles.css";
+
+.icontent {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  overflow-y: hidden;
+  overflow-x: auto;
+  margin: 4%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  border-radius: 1px;
+  padding: 2px;
+  padding-bottom: 3px;
+  background: #bdc3c7;  /* Backup */
+  background: linear-gradient(to right, #758899, #a7afb4); /* Modern browsers */
+
+}
+
+.HiddenID {
+  display: none;
+}
+
+/* Header and Columns*/
+
+.itable th, .itable td {
+  height: inherit;
+  text-align: center;
+  border: 1px solid #ddd;
+}
+
+.itable {
+  border-collapse: collapse;
+  color: rgb(0, 0, 0);
+}
+
+/* Header only*/
+
+.itable th {
+  background: #2f3e4d;
+  color: white;
+}
+
+/* Edit marks section */
+
+#edit-mark-options {
+  width: 100%;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: center;
+  display: block;
+  flex-direction: row;
+}
+
+#iviewedit {
+  margin:auto;
+  width: 320px;
+  background: linear-gradient(to right, rgb(160, 176, 194), rgb(202, 215, 230));
+}
+
+#GradeBackend:hover {
+  color: rgb(88, 133, 185);
+}
+
+/* instructor-feedback and remarks shares this css */
+
+#trash-btn {
+  opacity: 0.5;
+  transition: 0.2s;
+}
+
+#trash-btn:hover {
+  opacity: 1;
+}
+
+.hidden-key {
+  display: none;
+}
+
+#hidden-td {
+  border: none;
+}

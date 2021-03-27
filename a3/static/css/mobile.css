@@ -9,6 +9,12 @@
 	.footer .links:hover {
 		font-size: 19px;
 	}
+	.icontent {
+		width: 1380px;
+		margin: auto;
+		margin-top: 30px;
+		margin-bottom: 30px;
+	}
 }
 
 /* Laptop View */
