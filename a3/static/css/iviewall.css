@@ -25,6 +25,7 @@
 /* Header and Columns*/
 
 .itable th, .itable td {
+  padding: 5px;
   height: inherit;
   text-align: center;
   border: 1px solid #ddd;
@@ -38,6 +39,7 @@
 /* Header only*/
 
 .itable th {
+  padding: 8px;
   background: #2f3e4d;
   color: white;
 }
