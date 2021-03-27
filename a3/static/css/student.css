@@ -94,15 +94,20 @@ main {
   margin: 5vw;
 }
 
+h1{
+  margin-bottom: 0px;
+}
 .content .grades{
-  overflow: hidden;
+  width: 100%;
   border-collapse: collapse;
+  overflow-x: auto;
+  display: block;
   margin-bottom: 40px;
 }
 .grades th, .grades td{
   border: 1px solid #ddd;
   padding: 8px;
-  padding-right: 30px;
+  padding-right: 32.4px;
 }
 .grades th {
   padding-top: 12px;
@@ -112,11 +117,15 @@ main {
   color: white;
 }
 
+.grades td {
+  background-color: #BBCFDF;
+}
+
 button{
   background-color: rgb(19, 40, 85);
   border: none;
   color: white;
-  padding: 6px 12px;
+  padding: 7px 30px;
   text-align: center;
   border-radius: 4px;
 }

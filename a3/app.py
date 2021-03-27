@@ -79,8 +79,8 @@ def page_not_found(e):
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
     #check the status of user
-    if session['user_type'] != "student": 
-        return redirect(redirect_url())
+    #if session['user_type'] != "student": 
+        #return redirect(redirect_url())
 
     db = get_db()
     # Each row from the table is placed in dictionary form
