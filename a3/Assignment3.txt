@@ -1,14 +1,11 @@
-(Folders etc here)
-
 To do:
 
-Authentication
-Variables for the user that can be passed around html
-Python/Flask, GET/POST
-Javascript for forms
+Authentication (Assign session[username/user_type] upon Login)
 report.pdf
 
-assignment3.db current contains some tables with dummy data. table structure is not final.
 
-log:
+
+Notes:
+
+assignment3.db current contains some tables with dummy data. table structure is nearly final.
 accidentally pushed empty login.html and overrode it

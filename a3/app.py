@@ -72,7 +72,7 @@ def login():
 @app.route('/logout')
 def logout_redirect():
     session.pop('username', None)
-    session['user_type'] = 'guest'
+    session.pop('user_type', None)
     return redirect(url_for('login'))
 
 # Bad links redirect to the login page
