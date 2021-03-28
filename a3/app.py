@@ -44,6 +44,15 @@ def valid_login(username, password):
 app = Flask(__name__)
 app.secret_key = "thesecretkey"
 
+# Pre-define variables, clear session upon startup
+@app.before_first_request
+def build_session():
+    # print("starting up!")
+    session.permanent = False
+    session.clear()
+    session['username'] = ""
+    session['user_type'] = "Guest"
+
 # the function close_connection is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
 @app.teardown_appcontext
@@ -84,9 +93,13 @@ def page_not_found(e):
 
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
-    #check the status of user
-    #if session['user_type'] != "student": 
-        #return redirect(redirect_url())
+    #check the status of user    
+    print(session['username'])
+    print(session['user_type'])
+    if not valid_access():
+        return redirect(redirect_url())
+    elif session['user_type'] != "student":
+        return redirect('index.html')
 
     db = get_db()
     # Each row from the table is placed in dictionary form
@@ -123,8 +136,10 @@ def student():
 # Instructor View - All Grades
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
-    if session['user_type'] != "instructor":       
+    if not valid_access():
         return redirect(redirect_url())
+    elif session['user_type'] != "instructor":
+        return redirect('index.html')
 
     db = get_db()
 
@@ -154,8 +169,10 @@ def instructor_view_grades():
 # Instructor View - Feedback, can remove feedback
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
-    if session['user_type'] != "instructor":
+    if not valid_access():
         return redirect(redirect_url())
+    elif session['user_type'] != "instructor":
+        return redirect('index.html')
 
     db = get_db()
     
@@ -180,8 +197,10 @@ def instructor_view_feedback():
 # Instructor View - Remark Requests, can remove remark requests
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
-    if session['user_type'] != "instructor": 
+    if not valid_access():
         return redirect(redirect_url())
+    elif session['user_type'] != "instructor":
+        return redirect('index.html')
 
     db=get_db()
 
@@ -206,58 +225,66 @@ def instructor_view_remarks():
 
 # Redirect back to the previous page (if the user attempts to access something bad)
 # From https://flask.palletsprojects.com/en/1.1.x/reqcontext/
-def redirect_url(default='root'):
-    return request.args.get('next') or request.referrer or url_for(default)
+def redirect_url(default='login'):
+    return request.referrer or url_for(default)
     # Use >> return redirect(redirect_url()) << In function call
-
-# Landing page. What will it be?
-@app.route('/')
-def root():
-    return render_template('index.html')  # Change to landing html!
 
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    if session['user_type'] != "instructor":
-        print("Only instructors can access this page!" + redirect_url())
+    print(session['username'])
+    if not valid_access():
         return redirect(redirect_url())
+    elif session['user_type'] != "instructor":
+        return redirect('index.html')
     return render_template('instructorpanel.html', user_type=session['user_type'])
 
 @app.route('/assignments.html')
 def assignments_page():
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('assignments.html', user_type=session['user_type'])
 
 @app.route('/calendar.html')
-def calendar_page():
+def calendar_page():    
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('calendar.html', user_type=session['user_type'])
 
 @app.route('/index.html')
-def index_page():
+def index_page():    
+    if not valid_access(): 
+        return redirect('login.html')
     return render_template('index.html', user_type=session['user_type'])
 
 @app.route('/lectures.html')
-def lectures_page():
+def lectures_page():    
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('lectures.html', user_type=session['user_type'])
 
 @app.route('/links.html')
 def links_page():
-    # Testing - Applies Instructor View (Remove later)
-    session['user_type'] = "instructor"
-    session['username'] = "instructor1"
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('links.html', user_type=session['user_type'])
 
 @app.route('/team.html')
-def team_page():
-    # Testing - Applies Student View (Remove later)
-    session['user_type'] = "student"
+def team_page():    
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('team.html', user_type=session['user_type'])
 
 @app.route('/tests.html')
-def tests_page():
+def tests_page():    
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('tests.html', user_type=session['user_type'])
 
 @app.route('/tutorials.html')
-def tutorials_page():
+def tutorials_page():    
+    if not valid_access(): 
+        return redirect(redirect_url())
     return render_template('tutorials.html', user_type=session['user_type'])
 
 # Runs after a request, clears cache (Development purposes)
@@ -273,6 +300,16 @@ def add_header(response):
 def get_exam_names():
     exams = ["A1","A2","A3","T1","T2","T3","FINAL"]
     return exams
+
+# returns True if the user is valid
+def valid_access():
+    username = session['username']
+    # Do not open another DB context (or flask complains)
+    sql = """select type from user where username = '{}'""".format(username)
+    usertypedb = query_db(sql)
+    if (not usertypedb) or (session['user_type'] != usertypedb[0].get('TYPE')):
+        return False
+    return True
 
 # -------------------------------------------- Port --------------------------------------
 
