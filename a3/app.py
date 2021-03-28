@@ -29,6 +29,15 @@ def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value)
                 for idx, value in enumerate(row))
 
+def log_the_user_in(username):
+    return render_template('index.html')
+
+def valid_login(username, password):
+    user = query_db('SELECT * from USER where username = ? and password = ?', [username, password], one=True)
+    if user is None:
+        return False
+    else:
+        return True
 
 # ---------------------------------------------- Flask ------------------------------------------------
 
@@ -46,21 +55,18 @@ def close_connection(exception):
 
 # ---------------------------------------------- Authentication ---------------------------------------
 
-# route for login webpage
-@app.route('/login', methods=['GET', 'POST'])
+# Login route
+@app.route("/")
+@app.route('/login', methods=['POST', 'GET'])
 def login():
-    session['username'] = "guest"
-    session['user_type'] = "guest"
     error = None
-    # TODO: query database and story usernames and password in a dict
-    # if request.method == 'GET':
-
     if request.method == 'POST':
-        if request.form['username'] != 'anna.b' or request.form['password'] != '123': #placeholder credentials (will integrate with database)
-            error = "Username or password incorrect."
+        if valid_login(request.form['username'], request.form['password']):
+            return log_the_user_in(request.form['username'])
         else:
-            return redirect(url_for('./index.html'))
-    return render_template('login.html', error=error)  
+            error = 'The username/password you’ve entered is incorrect.'
+
+    return render_template('login.html', error=error)
 
 # Logout route redirects to Login page
 @app.route('/logout')
