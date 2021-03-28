@@ -69,11 +69,13 @@
 /* instructor-feedback and remarks shares this css */
 
 #trash-btn {
+  font-size: 120%;
   opacity: 0.5;
-  transition: 0.2s;
+  transition: 0.1s;
 }
 
 #trash-btn:hover {
+  color: rgb(190, 38, 28);
   opacity: 1;
 }
 
