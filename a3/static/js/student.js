@@ -36,13 +36,18 @@ function changeMargin() {
 
 //close remark request
 close.onclick = function() {
-    request_box.style.display = "none";
+    request_box.style.animation = "close 1s";
+    setTimeout(function(){
+        request_box.style.display = "none";
+        request_box.style.animation = "none";
+    }, 1000);
 }
 
 //open remark request and change heading acording to the button
 function clicked(clicked_but){
     const click = clicked_but.target;
     request_box.style.display = "block";
+    request_box.style.animation = "open 1.5s";
     document.getElementById("title").innerHTML = `Request For Remark ${click.id}`;
     area.setAttribute("value",`${click.id}`);
 }

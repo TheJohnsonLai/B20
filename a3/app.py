@@ -104,8 +104,8 @@ def student():
     db = get_db()
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
-    # request.args.get('utorid')#'utorid'can be other things depend on what login page returns
-    utorid = 1
+    # get utorid
+    utorid = query_db('select * from USER where UTORID = ?', [session['username']], one=True)
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
