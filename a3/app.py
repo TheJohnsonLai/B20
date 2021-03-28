@@ -29,7 +29,7 @@ def make_dicts(cursor, row):
     return dict((cursor.description[idx][0], value)
                 for idx, value in enumerate(row))
 
-def log_the_user_in(username):
+def login_user(username):
     return render_template('index.html')
 
 def valid_login(username, password):
@@ -62,7 +62,7 @@ def login():
     error = None
     if request.method == 'POST':
         if valid_login(request.form['username'], request.form['password']):
-            return log_the_user_in(request.form['username'])
+            return login_user(request.form['username'])
         else:
             error = 'The username/password you’ve entered is incorrect.'
 
@@ -281,4 +281,5 @@ def get_exam_names():
 
 if __name__ == '__main__':
     app.debug = True
+    TEMPLATES_AUTO_RELOAD = True
     app.run()
