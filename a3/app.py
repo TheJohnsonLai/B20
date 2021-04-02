@@ -77,6 +77,12 @@ def login():
 
     return render_template('login.html', error=error)
 
+@app.route('/newuser', methods=['POST', 'GET'])
+def make_user():
+    error = None
+    return render_template('newuser.html', error=error)
+
+
 # Logout route redirects to Login page
 @app.route('/logout')
 def logout_redirect():

@@ -13,12 +13,12 @@
       function validateForm() {
       var x = document.forms["login-form"]["username"].value;
       if (x==null || x=="") {
-          alert("Please enter a username");
+          alert("Please enter your username");
           return false;
       }
       var y = document.forms["login-form"]["password"].value;
       if (y==null || y=="") {
-          alert("Please enter a password");
+          alert("Please enter your password");
           return false;
       }
       }
@@ -40,8 +40,11 @@
             <input type ="text" name ="username" placeholder="Username"><br>
             <input type="password" name="password" placeholder="Password"><br>
             <input type="submit" value="Log In"><br>
-            </form>
-      </div>
+          </form>
+          <form action="/newuser" method='POST'>
+          <input type="submit" value="Sign Up"/>
+        </form>
+        </div>
     </div>
     <div class="footer">
         <img src="../static/images/2.png" alt="some_text" id="icon">
