@@ -39,6 +39,12 @@ def valid_login(username, password):
     else:
         return True
 
+def user_exists(utorid, username, password):
+    exists = query_db('SELECT * from USER where UTORID = ? and username = ? and password = ?', [utorid, username, password], one=True)
+    if exists is None:
+        return False
+    else:
+        return True
 # ---------------------------------------------- Flask ------------------------------------------------
 
 app = Flask(__name__)
@@ -79,8 +85,33 @@ def login():
 
 @app.route('/newuser', methods=['POST', 'GET'])
 def make_user():
+    db = get_db()
     error = None
+    if request.method == 'GET':
+        if not user_exists(request.form['utorid'], request.form['username'], request.form['password']):
+            return login_user(request.form['username'])
+        else:
+            error = 'A user with this utorid/username already exists.'
+        return render_template('newuser.html', error=error)
+    else: # request.method == 'POST'
+        user_type = request.form.get('usertype')
+        section = request.form.get('lecsection')
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        utorid = request.form.get('utorid')
+        username = request.form.get('username')
+        password = request.form.get('password')
+        db.execute("INSERT INTO USER VALUES (?, ?, ?, ?)", [utorid, user_type, username, password])
+        if user_type == "Student":
+            db.execute("INSERT INTO STUDENT VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
+            db.commit()
+        else:
+            db.execute("INSERT INTO INSTRUCTOR VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
+            db.commit()
+        db.close()
+        return redirect(url_for('login'))
     return render_template('newuser.html', error=error)
+
 
 
 # Logout route redirects to Login page
