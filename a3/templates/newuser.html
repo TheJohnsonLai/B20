@@ -12,7 +12,44 @@
 
     <script>
         function validateForm(){
-            var a = document.forms["newuser-form"];
+            var a = document.forms["newuser-form"]["fname"].value;
+            var b = document.forms["newuser-form"]["lname"].value;
+            var c = document.forms["newuser-form"]["utorid"].value;
+            var d = document.forms["newuser-form"]["username"].value;
+            var e = document.forms["newuser-form"]["password"].value;
+            var f = document.forms["newuser-form"]["password-check"].value;
+            if (a==null || a==""){
+                alert("Please enter your first name.");
+                return false;
+            }
+            else if (b==null || b==""){
+                alert("Please enter your last name.");
+                return false;
+            }
+            else if (c==null || c==""){
+                alert("Enter your UTORid.");
+                return false;
+            }
+            else if (d==null || d==""){
+                alert("Enter a username.");
+                return false;
+            }
+            else if (e==null || e==""){
+                alert("Enter a password.");
+                return false;
+            }
+            else if (f==null || f==""){
+                alert("Please verify your password.");
+                return false;
+            }
+            else if (!(f===e)){
+                alert("Your password and confirmation password do not match.");
+                return false;
+            }
+        }
+
+        function validateUser(){
+
         }
     </script>
 
@@ -23,7 +60,7 @@
         <div class="wrap-content">
           <br>
           <form name="newuser-form"  action="/newuser" onsubmit="return validateForm()" target="_self" method="POST"  >
-            <h2>Create Your Account</h2>
+            <h1><b>Create Your Account</b></h1>
             {% if error %}
             <p>{{ error }}</p>
             {% endif %}
@@ -41,11 +78,14 @@
                 <option value="two">2</option>
             </select>
             <br>
+            <br>
+            <h5>Fill in all the fields below:</h5>
             <input type="text" name="fname" placeholder="First Name"><br>
             <input type="text" name="lname" placeholder="Last Name"><br>
             <input type="text" name="utorid" placeholder="UTORid"><br>
             <input type ="text" name="username" placeholder="Username"><br>
             <input type="password" name="password" placeholder="Password"><br>
+            <input type="password" name="password-check" placeholder="Confirm Password"><br>
 			<input type="submit" value="Create My Account">
 	      </form>
         </div>
