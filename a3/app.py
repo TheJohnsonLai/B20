@@ -1,5 +1,5 @@
 # Required imports
-import sqlite3, time, datetime, json
+import sqlite3, time
 # g is used for database, not all will be used
 from flask import Flask, render_template, request, g, redirect, session, url_for, abort
 
@@ -128,10 +128,8 @@ def student():
         fc = request.form['FC']
         fd = request.form['FD']
         created = int(time.time())
-        date = datetime.datetime.now()
-        date = date.strftime("%d/%m/%Y")
         #update database
-        db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?, ?)",[instructor_id, fa, fb, fc, fd, created,date])
+        db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[instructor_id, fa, fb, fc, fd, created])
         db.commit()
     
     db.close()
