@@ -21,7 +21,6 @@ main {
 }
 
 /* Menu Button*/
-
 .permanent-option {
 	height: 100%;
 	float: left;
@@ -96,44 +95,71 @@ main {
   margin: 5vw;
 }
 
+/*title*/
 h1{
-  margin-bottom: 0px;
+  margin-bottom: 2vw;
 }
-
-/*grade tabel*/
-.content .grades{
-  width: 100%;
-  border-collapse: collapse;
-  overflow-x: auto;
-  display: block;
-  margin-bottom: 40px;
+/*subtab*/
+.intro button{
+  cursor: pointer;
+  background-color: rgb(220, 229, 238);
+  border: none;
+  color: rgb(19, 40, 85);
+  padding: 10px 15px;
 }
-.grades th, .grades td{
-  border: 1px solid #ddd;
-  padding: 8px;
-  padding-right: 32.4px;
-}
-.grades th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
+#MarksRemarkRequest{
+  border: 1.5px solid rgb(19, 40, 85);
+  border-bottom: none;
+  border-radius: 6px;
+  border-bottom-left-radius: 0px;
+  border-bottom-right-radius: 0px;
   background-color: rgb(19, 40, 85);
   color: white;
 }
-.grades td {
-  background-color: #BBCFDF;
+.intro hr{
+  color: rgb(19, 40, 85);
 }
+
+/*grade tabel*/
+.grid-container {
+  margin-top: 0.2vw;
+  margin-bottom: 2vw;
+  display: grid;
+  overflow-x: scroll;
+  grid-template-columns: auto auto auto auto auto auto auto;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  text-align: center;
+}
+.th {
+  background-color: rgb(19, 40, 85);
+  border: 1px solid #ddd;
+  padding: 10px;
+  color: white;
+  text-align: center;
+}
+
 /*request button*/
-button{
+.grid-container button{
   cursor: pointer;
   background-color: #BBCFDF;
   border: 2px solid rgb(19, 40, 85);
   color: rgb(19, 40, 85);
-  padding: 7px 30px;
+  padding: 7px 15px;
   text-align: center;
   border-radius: 6px;
 }
-button:hover{
+.grid-container .notice {
+  grid-column: 1 / 8;
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 10px;
+  text-align: center;
+}
+.grid-container button:hover{
   background-color: rgb(19, 40, 85);
   color: #BBCFDF;
   -webkit-animation: hover 2s; /* Chrome, Safari, Opera */
@@ -213,13 +239,23 @@ input[type=text]{
 }
 
 /*feedback*/
+#myFeedback{
+  display: none;
+}
 h2{
-  margin-bottom: 0px;
+  margin-top:2vw;
+  margin-bottom: 1vw;
 }
 #feedback_box {
   border-radius: 5px;
   background-color: #BBCFDF;
   padding: 20px;
+}
+select {
+  width: 100%;
+  padding: 16px 20px;
+  border: 1px solid grey;
+  border-radius: 4px;
 }
 
 /*animations*/

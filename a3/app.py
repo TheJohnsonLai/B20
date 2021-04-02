@@ -1,5 +1,5 @@
 # Required imports
-import sqlite3, time
+import sqlite3, time, datetime, json
 # g is used for database, not all will be used
 from flask import Flask, render_template, request, g, redirect, session, url_for, abort
 
@@ -105,11 +105,12 @@ def student():
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
     # get utorid
-    utorid = query_db('select * from USER where UTORID = ?', [session['username']], one=True)
+    utorid = 2 #query_db('select * from USER where UTORID = ?', [session['username']], one=True)
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
     student_grades = query_db('select * from GRADES where UTORID = ?', [utorid], one=True)
+    instructors = query_db('select * from INSTRUCTOR', one=False)
 
     # Student grade can be found.
     if request.method == 'POST' and request.form['formName'] == "remark": #remark submitted
@@ -121,17 +122,20 @@ def student():
         db.commit()
 
     elif request.method == 'POST' and request.form['formName'] == "feedback": #feedback submitted
+        instructor_id = request.form['instructor_id']
         fa = request.form['FA']
         fb = request.form['FB']
         fc = request.form['FC']
         fd = request.form['FD']
         created = int(time.time())
+        date = datetime.datetime.now()
+        date = date.strftime("%d/%m/%Y")
         #update database
-        db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?)",[section, fa, fb, fc, fd, created])
+        db.execute("INSERT INTO FEEDBACK VALUES (?, ?, ?, ?, ?, ?, ?)",[instructor_id, fa, fb, fc, fd, created,date])
         db.commit()
     
     db.close()
-    return render_template('student.html', grade=student_grades, name=name, section = section)
+    return render_template('student.html', grade=student_grades, name=name, section=section, instructors=instructors)
 
 # Instructor View - All Grades
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
