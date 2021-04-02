@@ -231,8 +231,8 @@ def redirect_url(default='login'):
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    session['username'] = "instructor1"
-    session['user_type'] = "instructor"
+    #session['username'] = "instructor1"
+    #session['user_type'] = "instructor"
     if not valid_access():
         return redirect(redirect_url())
     elif session['user_type'] != "instructor":
@@ -306,7 +306,7 @@ def get_exam_names(table):
         exams.append(item['name'])
     db.close()
     exams.pop(0)
-    
+
     return exams
 
 # returns True if the user is valid
