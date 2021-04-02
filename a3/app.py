@@ -105,7 +105,7 @@ def student():
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
     # get utorid
-    utorid = query_db('select * from USER where UTORID = ?', [session['username']], one=True)
+    utorid = query_db('select * from USER where username= ?', [session['username']], one=True).get('UTORID')
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
@@ -231,8 +231,8 @@ def redirect_url(default='login'):
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    #session['username'] = "instructor1"
-    #session['user_type'] = "instructor"
+    # session['username'] = "instructor1"
+    # session['user_type'] = "instructor"
     if not valid_access():
         return redirect(redirect_url())
     elif session['user_type'] != "instructor":
