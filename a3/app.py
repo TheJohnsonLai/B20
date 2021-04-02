@@ -135,7 +135,7 @@ def student():
     db.close()
     return render_template('student.html', grade=student_grades, name=name, section=section, instructors=instructors)
 
-# Instructor View - All Grades
+# Instructor View - All Grades. Sees all grades (to keep it simple, per handout)
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
     if not valid_access():
@@ -158,17 +158,14 @@ def instructor_view_grades():
         except:
             print ("Error with SQL statement. (I-Grades)")
 
-    sql = """select * from STUDENT NATURAL JOIN GRADES where section = 
-            (select section from instructor i natural join user u where u.username = '{}')""".format(session['username'])
-    students = query_db(sql)  
-    sql = """select UTORID from STUDENT where section = 
-            (select section from instructor i natural join user u where u.username = '{}')""".format(session['username'])
-    ids = query_db(sql)
+    students = query_db("select * from STUDENT NATURAL JOIN GRADES")  
+    ids = query_db("select UTORID from STUDENT NATURAL JOIN GRADES order by utorid")
+    exam_list = get_exam_names("GRADES")
     db.close()
             
-    return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=get_exam_names())
+    return render_template('iviewgrades.html', studentH=students, ulist=ids, elist=exam_list)
 
-# Instructor View - Feedback, can remove feedback
+# Instructor View - Feedback, can remove feedback. Only sees feedback directed at them (Instructor)
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
     if not valid_access():
@@ -188,15 +185,15 @@ def instructor_view_feedback():
             print ("Error with SQL statement. (I-Feedback)")
 
     feedback = []
-    sql = """select DISTINCT FA, FB, FC, FD, CREATED from FEEDBACK NATURAL JOIN USER WHERE SECTION = 
-            (select section from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
+    sql = """select DISTINCT FA, FB, FC, FD, CREATED from FEEDBACK WHERE utorid = 
+            (select utorid from instructor i natural join user u where u.username = '{}') order by CREATED""".format(session['username'])
     # View feedback that is directed towards this course section
     feedback = query_db(sql)
     db.close()
 
     return render_template('iviewfeedback.html', feedbackH=feedback)
 
-# Instructor View - Remark Requests, can remove remark requests
+# Instructor View - Remark Requests, can remove remark requests. Sees class section remark requests.
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
     if not valid_access():
@@ -234,7 +231,8 @@ def redirect_url(default='login'):
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    print(session['username'])
+    session['username'] = "instructor1"
+    session['user_type'] = "instructor"
     if not valid_access():
         return redirect(redirect_url())
     elif session['user_type'] != "instructor":
@@ -299,8 +297,16 @@ def add_header(response):
 # -------------------------------------------- Helper Functions --------------------------
 
 # returns exam & assignment names
-def get_exam_names():
-    exams = ["A1","A2","A3","T1","T2","T3","FINAL"]
+def get_exam_names(table):    
+    db = get_db()
+    exams = []
+
+    table_data = query_db("""pragma table_info({})""".format(table))
+    for item in table_data:
+        exams.append(item['name'])
+    db.close()
+    exams.pop(0)
+    
     return exams
 
 # returns True if the user is valid
