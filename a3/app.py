@@ -105,7 +105,7 @@ def student():
     # Each row from the table is placed in dictionary form
     db.row_factory = make_dicts
     # get utorid
-    utorid = 2 #query_db('select * from USER where UTORID = ?', [session['username']], one=True)
+    utorid = query_db('select * from USER where UTORID = ?', [session['username']], one=True)
     student_name = query_db('select * from STUDENT where UTORID = ?', [utorid], one=True)
     name = student_name['FNAME'] + ' ' + student_name['LNAME']
     section = student_name['SECTION']
@@ -118,7 +118,7 @@ def student():
         created = int(time.time())
         examname = request.form['remark_area']
         #update database
-        db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[1, examname, comment, created])
+        db.execute("INSERT INTO REMARKS VALUES (?, ?, ?, ?)",[utorid, examname, comment, created])
         db.commit()
 
     elif request.method == 'POST' and request.form['formName'] == "feedback": #feedback submitted
