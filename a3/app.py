@@ -357,6 +357,8 @@ def get_exam_names(table):
 
 # returns True if the user is valid
 def valid_access():
+    if (not session['username']):
+        return False
     username = session['username']
     # Do not open another DB context (or flask complains)
     usertypedb = query_db("select type from user where username = ?", [username], one=True)
