@@ -1,11 +1,12 @@
 To do:
 
-Authentication (Assign session[username/user_type] upon Login)
 report.pdf
-
+review debug statements (print(...) in app.py)
+database isolation-level might not be recommended (but inserts fail otherwise)
 
 
 Notes:
 
 assignment3.db current contains some tables with dummy data. table structure is nearly final.
 accidentally pushed empty login.html and overrode it
+fname was changed to blob by mysterious circumstances
