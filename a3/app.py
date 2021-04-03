@@ -96,11 +96,11 @@ def make_user():
     else: # request.method == 'POST'
         user_type = request.form.get('usertype')
         section = request.form.get('lecsection')
-        fname = request.form.get('fname')
-        lname = request.form.get('lname')
-        utorid = request.form.get('utorid')
-        username = request.form.get('username')
-        password = request.form.get('password')
+        fname = request.form['fname']
+        lname = request.form['lname']
+        utorid = request.form['utorid']
+        username = request.form['username']
+        password = request.form['password']
         db.execute("INSERT INTO USER VALUES (?, ?, ?, ?)", [utorid, user_type, username, password])
         if user_type == "Student":
             db.execute("INSERT INTO STUDENT VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
@@ -109,7 +109,7 @@ def make_user():
             db.execute("INSERT INTO INSTRUCTOR VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
             db.commit()
         db.close()
-        return redirect(url_for('login'))
+        return render_template('newuser.html', error=error)
     return render_template('newuser.html', error=error)
 
 
