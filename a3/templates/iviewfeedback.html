@@ -46,34 +46,26 @@
     </section>
 
     <main>
-        <div class="icontent" id="iviewcontent">
-            <table class="itable">
-                <tr>
-                    <th>What did they like about the professor?</th>
-                    <th>Suggestions for the professor?</th>
-                    <th>What did they like about the TA?</th>
-                    <th>Suggestions for the TA?</th>
-                </tr>
-                {% for item in feedbackH %}
-                <tr>
-                    <td>{{ item['FA'] }}</td>
-                    <td>{{ item['FB'] }}</td>
-                    <td>{{ item['FC'] }}</td>
-                    <td>{{ item['FD'] }}</td>
-                    <form name="feedback-form" id="fb-form" action="iviewfeedback.html" method="POST">
-                        <td id="hidden-td">
-                            <button id="trash-btn" type="submit" name="submission" value="delete"><i
-                                    class="fa fa-trash-o" form="feedback-form"></i></button>
-                        </td>
-                        <input class="hidden-key" type="number" id="created-date" name="created-date"
-                            value="{{item['CREATED']}}">
-                    </form>
-                </tr>
-                {% endfor %}
-            </table>
+        <div class="grid-content" id="grid-content">
+            <div class="grid-th">What did they like about the professor?</div>
+            <div class="grid-th">Suggestions for the professor?</div>
+            <div class="grid-th">What did they like about the TA?</div>
+            <div class="grid-th">Suggestions for the TA?</div>
+            <div class="grid-trash"></div>
+            {% for item in feedbackH %}
+            <div class="grid-td">{{ item['FA'] }}</div>
+            <div class="grid-td">{{ item['FB'] }}</div>
+            <div class="grid-td">{{ item['FC'] }}</div>
+            <div class="grid-td">{{ item['FD'] }}</div>
+            <form name="feedback-form" id="fb-form" action="iviewfeedback.html" method="POST">
+                <div class="grid-td2"><button id="trash-btn" type="submit" name="submission" value="delete"><i
+                            class="fa fa-trash-o" form="feedback-form"></i></button></div>
+            </form>
+            <input class="hidden-key" type="number" id="created-date" name="created-date" value="{{item['CREATED']}}">
+            {% endfor %}
         </div>
     </main>
-    
+
     <!--footer-->
     <div class="footer">
         <img src="../static/images/2.png" alt="some_text" id="icon">

@@ -47,32 +47,25 @@
             </div>
         </section>
 
-        <div class="icontent" id="iviewcontent">
-
-            <table class="itable">
-                <tr>
-                    <th>UTOR ID</th>
-                    <th>Name</th>
-                    <th>Article</th>
-                    <th>Request Reason</th>
-                </tr>
-                {% for item in remarksH %}
-                <tr>
-                    <td>{{ item['UTORID'] }}</td>
-                    <td>{{ item['FNAME'] }} {{ item['LNAME'] }}</td>
-                    <td>{{ item['EXAMNAME'] }}</td>
-                    <td>{{ item['COMMENT'] }}</td>
-                    <form name="rm-form" id="rm-form" action="iviewremarks.html" method="POST">
-                        <td id="hidden-td">
-                            <button id="trash-btn" type="submit" name="submission" value="delete"><i
-                                    class="fa fa-trash-o" form="feedback-form"></i></button>
-                        </td>
-                        <input class="hidden-key" type="number" id="created-date" name="created-date"
-                            value="{{item['CREATED']}}">
-                    </form>
-                </tr>
-                {% endfor %}
-            </table>
+        <div class="grid-content" id="grid-content">
+            <div class="grid-th">UTORid</div>
+            <div class="grid-th">Name</div>
+            <div class="grid-th">Article</div>
+            <div class="grid-th">Request Reason</div>
+            <div class="grid-trash"></div>
+            {% for item in remarksH %}
+            <div class="grid-td">{{ item['UTORID'] }}</div>
+            <div class="grid-td">{{ item['FNAME'] }} {{ item['LNAME'] }}</div>
+            <div class="grid-td">{{ item['EXAMNAME'] }}</div>
+            <div class="grid-td">{{ item['COMMENT'] }}</div>
+            <form name="rm-form" id="rm-form" action="iviewremarks.html" method="POST">
+                <div class="grid-td2" id="hidden-td">
+                    <button id="trash-btn" type="submit" name="submission" value="delete"><i class="fa fa-trash-o"
+                            form="feedback-form"></i></button>
+                </div>
+            </form>
+            <input class="hidden-key" type="number" id="created-date" name="created-date" value="{{item['CREATED']}}">
+            {% endfor %}
         </div>
     </main>
 

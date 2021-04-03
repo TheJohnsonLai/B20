@@ -9,7 +9,7 @@
 	.footer .links:hover {
 		font-size: 19px;
 	}
-	.icontent {
+	.grid-content, .grid-content-wide {
 		width: 1380px;
 		margin: auto;
 		margin-top: 30px;

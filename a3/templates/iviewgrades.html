@@ -45,41 +45,35 @@
     </section>
 
     <main>
-        <div class="icontent" id="iviewcontent">
-            <table class="itable">
-                <tr>
-                    <th>UTOR ID</th>
-                    <th>First Name</th>
-                    <th>Last Name</th>
-                    <th>Assignment 1</th>
-                    <th>Assignment 2</th>
-                    <th>Assignment 3</th>
-                    <th>Test 1</th>
-                    <th>Test 2</th>
-                    <th>Test 3</th>
-                    <th>Final Exam</th>
-                </tr>
-                {% for item in studentH %}
-                <tr>
-                    <td>{{ item['UTORID'] }}</td>
-                    <td>{{ item['FNAME'] }}</td>
-                    <td>{{ item['LNAME'] }}</td>
-                    <td>{{ item['A1'] }}</td>
-                    <td>{{ item['A2'] }}</td>
-                    <td>{{ item['A3'] }}</td>
-                    <td>{{ item['T1'] }}</td>
-                    <td>{{ item['T2'] }}</td>
-                    <td>{{ item['T3'] }}</td>
-                    <td>{{ item['FINAL'] }}</td>
-                </tr>
-                </form>
-                {% endfor %}
-            </table>
+        <div class="grid-content-wide" id="grid-content-wide">
+            <div class="grid-th">UTORid</div>
+            <div class="grid-th">First Name</div>
+            <div class="grid-th">Last Name</div>
+            <div class="grid-th">Assignment 1</div>
+            <div class="grid-th">Assignment 2</div>
+            <div class="grid-th">Assignment 3</div>
+            <div class="grid-th">Test 1</div>
+            <div class="grid-th">Test 2</div>
+            <div class="grid-th">Test 3</div>
+            <div class="grid-th">Final Exam</div>
+            {% for item in studentH %}
+            <div class="grid-td">{{ item['UTORID'] }}</div>
+            <div class="grid-td">{{ item['FNAME'] }}</div>
+            <div class="grid-td">{{ item['LNAME'] }}</div>
+            <div class="grid-td">{{ item['A1'] }}</div>
+            <div class="grid-td">{{ item['A2'] }}</div>
+            <div class="grid-td">{{ item['A3'] }}</div>
+            <div class="grid-td">{{ item['T1'] }}</div>
+            <div class="grid-td">{{ item['T2'] }}</div>
+            <div class="grid-td">{{ item['T3'] }}</div>
+            <div class="grid-td">{{ item['FINAL'] }}</div>
+            {% endfor %}
         </div>
 
         <div class="icontent" id="iviewedit">
             <div class="ioption" id="edit-mark-form"> <i>Edit Marks</i>
-                <form name="editform" id="edit-mark-options" action="iviewgrades.html" onSubmit="return validateGrade()" method="POST">
+                <form name="editform" id="edit-mark-options" action="iviewgrades.html" onSubmit="return validateGrade()"
+                    method="POST">
                     <select class="top-option" id="list-utorid" name="list-utorid" placeholder="ID">
                         <option value="--">ID</option>
                         {% for item in ulist %}
@@ -92,7 +86,8 @@
                         <option value="{{item}}">{{item}}</option>
                         {% endfor %}
                     </select>
-                    <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00" step=0.01 min= "0.00" max="100"> |
+                    <input class="top-option" type="number" id="num-val" name="new-grade" placeholder="0.00" step=0.01
+                        min="0.00" max="100"> |
 
                     <input class="top-option" type="submit" name="submission" id="GradeBackend" value="Submit marks">
                 </form>

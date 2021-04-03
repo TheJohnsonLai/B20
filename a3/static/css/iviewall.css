@@ -1,47 +1,64 @@
 @import "styles.css";
 
-.icontent {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: nowrap;
-  justify-content: center;
-  overflow-y: hidden;
-  overflow-x: auto;
+#fb-form, #rm-form {
+  margin: 0;
+  padding: 0;
+}
+
+/* CSS Grid for Instructor Views */
+.grid-content {
   margin: 4%;
   margin-top: 30px;
   margin-bottom: 30px;
-  border-radius: 1px;
-  padding: 2px;
-  padding-bottom: 3px;
-  background: #bdc3c7;  /* Backup */
+  padding: 3px;
+  display: grid;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  grid-gap: 1px;
+  grid-template-columns: auto auto auto auto 36px;
+  background: #a7afb4;  /* Backup */
   background: linear-gradient(to right, #758899, #a7afb4); /* Modern browsers */
-
+}
+/* Wider grid for Grades - Scroll, More Columns*/
+.grid-content-wide {
+  margin: 4%;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  padding: 3px;
+  display: grid;
+  overflow-y: hidden;
+  overflow-x: auto;
+  grid-gap: 1px;
+  grid-template-columns: auto auto auto auto auto auto auto auto auto auto;
+  background: #a7afb4;  /* Backup */
+  background: linear-gradient(to right, #758899, #a7afb4); /* Modern browsers */
+}
+/* All grid columns share this */
+.grid-th, .grid-td, .grid-td2 {
+  display: flex;
+  text-align: center;
+  flex-direction: column;
+  flex-wrap: nowrap;
+  justify-content: center;
+  box-shadow:0 0 0 1px #ddd;
+  padding: 5px;
+  height: inherit;
+  text-align: center;
+}
+/* Trash button's grid */
+.grid-td2 {
+  margin: auto;
+  box-shadow: none;
+}
+.grid-th {
+  padding: 8px;
+  background: #2f3e4d;
+  color: white;
+  font-weight: bold;
 }
 
 .HiddenID {
   display: none;
-}
-
-/* Header and Columns*/
-
-.itable th, .itable td {
-  padding: 5px;
-  height: inherit;
-  text-align: center;
-  border: 1px solid #ddd;
-}
-
-.itable {
-  border-collapse: collapse;
-  color: rgb(0, 0, 0);
-}
-
-/* Header only*/
-
-.itable th {
-  padding: 8px;
-  background: #2f3e4d;
-  color: white;
 }
 
 /* Edit marks section */
@@ -66,12 +83,14 @@
   color: rgb(88, 133, 185);
 }
 
-/* instructor-feedback and remarks shares this css */
+/* Trash button */
 
 #trash-btn {
   font-size: 120%;
   opacity: 0.5;
   transition: 0.1s;
+  width: 30px;
+  height: 30px;
 }
 
 #trash-btn:hover {
