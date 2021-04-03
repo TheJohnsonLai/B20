@@ -129,6 +129,7 @@ def newuser():
 @app.route('/logout')
 def logout_redirect():
     build_session()
+    print(session['user_type'])
     return redirect(url_for('login'))
 
 # Bad links redirect to the login page
@@ -359,8 +360,10 @@ def valid_access():
     username = session['username']
     # Do not open another DB context (or flask complains)
     usertypedb = query_db("select type from user where username = ?", [username], one=True)
+    if (not usertypedb):
+        return False
     utype = usertypedb.get('TYPE')
-    if (not usertypedb) or (session['user_type'] != utype):
+    if (session['user_type'] != utype):
         return False
     return True
 
