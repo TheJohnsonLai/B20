@@ -83,17 +83,11 @@ def login():
 
     return render_template('login.html', error=error)
 
-@app.route('/newuser', methods=['POST', 'GET'])
+@app.route('/newuser', methods=['GET', 'POST'])
 def newuser():
     db = get_db()
     error = None
-    if request.method == 'GET':
-        if not user_exists(request.form['utorid'], request.form['username'], request.form['password']):
-            return login_user(request.form['username'])
-        else:
-            error = 'A user with this utorid/username already exists.'
-        return render_template('newuser.html', error=error)
-    else: # request.method == 'POST'
+    if (request.method == 'POST'): # request.method == 'POST'
         user_type = request.form.get('usertype')
         section = request.form.get('lecsection')
         fname = request.form.get('fname')
@@ -101,15 +95,25 @@ def newuser():
         utorid = request.form.get('utorid')
         username = request.form.get('username')
         password = request.form.get('password')
+
+        # Check if user exists.
+        if user_exists(request.form['utorid'], request.form['username'], request.form['password']):
+            error = 'A user with this utorid/username already exists.'
+            return render_template('newuser.html', error=error)
+
         db.execute("INSERT INTO USER VALUES (?, ?, ?, ?)", [utorid, user_type, username, password])
-        if user_type == "Student":
+        if user_type == "student":
             db.execute("INSERT INTO STUDENT VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
+            db.commit()
+            db.execute("INSERT INTO GRADES VALUES (?,?,?,?,?,?,?,?)", [utorid,None,None,None,None,None,None,None])
             db.commit()
         else:
             db.execute("INSERT INTO INSTRUCTOR VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
             db.commit()
         db.close()
-        return render_template('newuser.html', error=error)
+
+        return redirect(url_for('login'))
+
     return render_template('newuser.html', error=error)
 
 
