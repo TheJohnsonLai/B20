@@ -141,8 +141,8 @@ def page_not_found(e):
 @app.route('/student.html', methods=['GET', 'POST'])
 def student():
     #check the status of user    
-    print(session['username'])
-    print(session['user_type'])
+    #print(session['username'])
+    #print(session['user_type'])
     if not valid_access():
         if (redirect_url() == request.url):
             return redirect(url_for('login'))
