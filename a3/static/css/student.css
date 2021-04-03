@@ -14,8 +14,8 @@ body {
 	flex-direction: column;
 }
 
+/* -----------------------------------------menu--------------------------------------------- */
 /* Force footer down with flex-direction column */
-
 main {
 	flex: 1;
 }
@@ -29,7 +29,6 @@ main {
 	border-right-width: 1px;
 	color: rgb(255, 255, 255);
 }
-
 .nav-bar #hidden-header {
 	display: none;
 	background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(8, 12, 18, 1) 8%, rgba(47, 132, 222, 0.514) 100%);
@@ -40,18 +39,15 @@ main {
 	text-shadow: 0px 0px 4px;
 	letter-spacing: 1em;
 }
-
 #nav-menu {
 	display: block;
 }
 
 /* Highlights current page */
-
 .nav-bar a.active {
 	background: linear-gradient(180deg, rgba(2, 0, 36, 1) 0%, rgba(8, 12, 18, 1) 3%, rgba(34, 91, 102, 0.09567577030812324) 98%);
 	color: rgb(162, 212, 253);
 }
-
 .nav-bar {
 	padding-top: 1px;
   text-align: center;
@@ -65,7 +61,6 @@ main {
 	z-index: 2;
 	/* Stacks over 0, negative indexes */
 }
-
 .nav-bar a {
 	/*float: left; Dropdown?*/
 	color: #f2f2f2;
@@ -75,22 +70,19 @@ main {
 	display: inline-block;
 	transition: .3s;
 }
-
 .nav-bar #hidden-header:hover {
 	background: none;
 }
-
 .nav-bar #hidden-header a:hover {
 	color: rgb(71, 228, 240);
 }
-
 .nav-bar #nav-menu a:hover, .permanent-option:hover {
 	background: linear-gradient(180deg, rgba(13, 68, 73, 0.23012955182072825) 0%, rgba(255, 255, 255, 0.12648809523809523) 100%);
 	color: rgb(172, 235, 216);
     box-shadow: inset 0 0 1px rgb(220, 222, 233);
 }
 
-/*content*/
+/* -----------------------------------------content--------------------------------------------- */
 .content {
   margin: 5vw;
 }
@@ -99,6 +91,7 @@ main {
 h1{
   margin-bottom: 2vw;
 }
+
 /*subtab*/
 .intro button{
   cursor: pointer;
@@ -181,7 +174,6 @@ h1{
   -webkit-animation: none; /* Chrome, Safari, Opera */
   animation: none;
 }
-
 .box-content {
   border-radius: 6px;
   background-color: white;
@@ -207,7 +199,8 @@ h1{
     color: black;
     cursor: pointer;
 }
-/*rmark form*/
+
+/*remark form*/
 textarea{
   width: 100%;
   padding: 12px 20px;
@@ -258,7 +251,7 @@ select {
   border-radius: 4px;
 }
 
-/*animations*/
+/* -----------------------------------------animation--------------------------------------------- */
 /* Chrome, Safari, Opera */
 @-webkit-keyframes open {
   0% {opacity: 0;}

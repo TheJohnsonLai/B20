@@ -23,7 +23,7 @@
                 class="fas fa-bars"></i></i></a>
             <a href="logout" id="logout" class="permanent-option"><i class="fas fa-sign-out-alt"></i></a>
             <div id="hidden-header">
-                <a href="index.html"><b>&nbsp;C S C // B 6 3</b></a>
+                <a href="index.html"><i class="fas fa-home"></i></a><b>&nbsp;C S C // B 6 3</b></a>
             </div>
             <div id="nav-menu">
                 <a href="index.html">Home</a>
@@ -47,12 +47,15 @@
     <main>
         <div class="content">
             <div class="intro">
+                <!-- title -->
                 <h1><center><b> Welcome {{name}}</b></center></h1>
+                <!-- subtabs -->
                 <button id="MarksRemarkRequest">Marks/Remark Request</button>
                 <button id="AnonymousFeedback">Anonymous Feedback</button>
                 <hr>
             </div>
             
+            <!-- mark table -->
             <div class="grid-container" id="gride-container">
                 <div class="th">Assignment 1</div>
                 <div class="th">Assignment 2</div>
@@ -81,7 +84,7 @@
                 {% endif %}
               </div>
     
-    
+            <!-- request form -->
             <div id="my_request_box" class="box">
                 <div class="box-content">
                   <span id="close_box" class="close">&times;</span>
@@ -96,6 +99,7 @@
                 </div>
             </div>
             
+            <!-- feedback form -->
             <div id="myFeedback">
                 <h2>Anonymous Feedback</h2>
                 <p>This is an opportunity to provide honest and confidential feedback about what is important to 
@@ -106,8 +110,8 @@
                 <div id="feedback_box">
                     <form action="student.html" method="POST" id="feedback_form">
                         <label for="instructor_id">Select an instructor</label>
+                        <!-- select instructor -->
                         <select id="instructor" name="instructor_id">
-
                         </select>
                         
                         <label for="FA">What do you like about the instructor teaching?</label>

@@ -18,14 +18,6 @@ function flipMenu() {
     }
 }
 
-//initiate content's top margin 
-var heading_height = document.getElementById("bar").clientHeight
-var content = document.getElementsByClassName("content")[0]
-var w = window.innerWidth;
-
-var marginOfContent = heading_height + (w*0.01)
-content.style.marginTop = marginOfContent + "px";
-
 //change content's top margin as screen size change
 function changeMargin() {
     var heading_height = document.getElementById("bar").clientHeight
@@ -121,5 +113,8 @@ for(key in instructorList){
 for(key in instructorList){
     document.getElementsByClassName('choice')[key].setAttribute("value",instructorList[key].UTORID);
 }
+
+
 document.querySelectorAll('.grid-container').forEach(button => button.addEventListener('click', clicked));
 window.addEventListener("resize", changeMargin);
+window.addEventListener("load", changeMargin);
