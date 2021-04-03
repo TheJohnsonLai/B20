@@ -76,7 +76,13 @@ def close_connection(exception):
 def login():
     error = None
     if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
         if valid_login(request.form['username'], request.form['password']):
+            session['username'] = request.form['username']
+            user_query = query_db("SELECT TYPE FROM USER WHERE USERNAME = ? and PASSWORD = ?", [username, password], one=True)
+            user_type = user_query['TYPE']
+            session['user_type'] = user_type
             return login_user(request.form['username'])
         else:
             error = 'The username/password you’ve entered is incorrect.'
