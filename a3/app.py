@@ -129,7 +129,6 @@ def newuser():
 @app.route('/logout')
 def logout_redirect():
     build_session()
-    print(session['user_type'])
     return redirect(url_for('login'))
 
 # Bad links redirect to the login page
@@ -145,7 +144,10 @@ def student():
     print(session['username'])
     print(session['user_type'])
     if not valid_access():
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     elif session['user_type'] != "student":
         return redirect('index.html')
 
@@ -187,7 +189,10 @@ def student():
 @app.route('/iviewgrades.html', methods=['GET', 'POST'])
 def instructor_view_grades():
     if not valid_access():
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     elif session['user_type'] != "instructor":
         return redirect('index.html')
 
@@ -217,7 +222,10 @@ def instructor_view_grades():
 @app.route('/iviewfeedback.html', methods=['GET', 'POST'])
 def instructor_view_feedback():
     if not valid_access():
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     elif session['user_type'] != "instructor":
         return redirect('index.html')
 
@@ -245,7 +253,10 @@ def instructor_view_feedback():
 @app.route('/iviewremarks.html', methods=['GET', 'POST'])
 def instructor_view_remarks():
     if not valid_access():
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     elif session['user_type'] != "instructor":
         return redirect('index.html')
 
@@ -280,7 +291,10 @@ def redirect_url(default='login'):
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
     if not valid_access():
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     elif session['user_type'] != "instructor":
         return redirect('index.html')
     return render_template('instructorpanel.html', user_type=session['user_type'])
@@ -288,49 +302,73 @@ def instructor_panel_page():
 @app.route('/assignments.html')
 def assignments_page():
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('assignments.html', user_type=session['user_type'])
 
 @app.route('/calendar.html')
 def calendar_page():    
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('calendar.html', user_type=session['user_type'])
 
 @app.route('/index.html')
 def index_page():    
     if not valid_access(): 
-        return redirect('login.html')
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('index.html', user_type=session['user_type'])
 
 @app.route('/lectures.html')
 def lectures_page():    
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('lectures.html', user_type=session['user_type'])
 
 @app.route('/links.html')
 def links_page():
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('links.html', user_type=session['user_type'])
 
 @app.route('/team.html')
 def team_page():    
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('team.html', user_type=session['user_type'])
 
 @app.route('/tests.html')
 def tests_page():    
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('tests.html', user_type=session['user_type'])
 
 @app.route('/tutorials.html')
 def tutorials_page():    
     if not valid_access(): 
-        return redirect(redirect_url())
+        if (redirect_url() == request.url):
+            return redirect(url_for('login'))
+        else:
+            return redirect(redirect_url())
     return render_template('tutorials.html', user_type=session['user_type'])
 
 # Runs after a request, clears cache (Development purposes)
@@ -362,7 +400,7 @@ def valid_access():
     username = session['username']
     # Do not open another DB context (or flask complains)
     usertypedb = query_db("select type from user where username = ?", [username], one=True)
-    if (not usertypedb):
+    if(not usertypedb):
         return False
     utype = usertypedb.get('TYPE')
     if (session['user_type'] != utype):
