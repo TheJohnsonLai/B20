@@ -84,7 +84,7 @@ def login():
     return render_template('login.html', error=error)
 
 @app.route('/newuser', methods=['POST', 'GET'])
-def make_user():
+def newuser():
     db = get_db()
     error = None
     if request.method == 'GET':
@@ -96,11 +96,11 @@ def make_user():
     else: # request.method == 'POST'
         user_type = request.form.get('usertype')
         section = request.form.get('lecsection')
-        fname = request.form['fname']
-        lname = request.form['lname']
-        utorid = request.form['utorid']
-        username = request.form['username']
-        password = request.form['password']
+        fname = request.form.get('fname')
+        lname = request.form.get('lname')
+        utorid = request.form.get('utorid')
+        username = request.form.get('username')
+        password = request.form.get('password')
         db.execute("INSERT INTO USER VALUES (?, ?, ?, ?)", [utorid, user_type, username, password])
         if user_type == "Student":
             db.execute("INSERT INTO STUDENT VALUES (?, ?, ?, ?)", [utorid, section, fname, lname])
