@@ -30,7 +30,7 @@ def make_dicts(cursor, row):
                 for idx, value in enumerate(row))
 
 def login_user(username):
-    return render_template('index.html')
+    return redirect(url_for('index_page'))
 
 def valid_login(username, password):
     user = query_db('SELECT * from USER where username = ? and password = ?', [username, password], one=True)
@@ -57,7 +57,7 @@ def build_session():
     session.permanent = False
     session.clear()
     session['username'] = ""
-    session['user_type'] = "Guest"
+    session['user_type'] = "guest"
 
 # the function close_connection is from
 # https://flask.palletsprojects.com/en/1.1.x/patterns/sqlite3/
@@ -79,7 +79,8 @@ def login():
         username = request.form['username']
         password = request.form['password']
         if valid_login(request.form['username'], request.form['password']):
-            session['username'] = request.form['username']
+            session.clear()
+            session['username'] = username
             user_query = query_db("SELECT TYPE FROM USER WHERE USERNAME = ? and PASSWORD = ?", [username, password], one=True)
             user_type = user_query['TYPE']
             session['user_type'] = user_type
@@ -127,8 +128,7 @@ def newuser():
 # Logout route redirects to Login page
 @app.route('/logout')
 def logout_redirect():
-    session.pop('username', None)
-    session.pop('user_type', None)
+    build_session()
     return redirect(url_for('login'))
 
 # Bad links redirect to the login page
@@ -278,8 +278,6 @@ def redirect_url(default='login'):
 # Instructor Panel
 @app.route('/instructorpanel.html')
 def instructor_panel_page():
-    # session['username'] = "instructor1"
-    # session['user_type'] = "instructor"
     if not valid_access():
         return redirect(redirect_url())
     elif session['user_type'] != "instructor":
@@ -360,9 +358,9 @@ def get_exam_names(table):
 def valid_access():
     username = session['username']
     # Do not open another DB context (or flask complains)
-    sql = """select type from user where username = '{}'""".format(username)
-    usertypedb = query_db(sql)
-    if (not usertypedb) or (session['user_type'] != usertypedb[0].get('TYPE')):
+    usertypedb = query_db("select type from user where username = ?", [username], one=True)
+    utype = usertypedb.get('TYPE')
+    if (not usertypedb) or (session['user_type'] != utype):
         return False
     return True
 
